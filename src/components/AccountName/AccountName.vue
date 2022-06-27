@@ -83,9 +83,9 @@ export default {
         /** @type {WalletBlockchain} */
         blockchain: {
             type: String,
-            default: 'fantom',
+            default: 'next',
             validator: function (_value) {
-                return ['fantom', 'ethereum', 'binance'].indexOf(_value) !== -1;
+                return ['next', 'ethereum', 'binance'].indexOf(_value) !== -1;
             },
         },
     },
@@ -105,7 +105,7 @@ export default {
             let url = '';
 
             switch (blockchain) {
-                case 'fantom':
+                case 'next':
                     url = `${appConfig.explorerUrl}address/${address}`;
                     break;
                 case 'ethereum':

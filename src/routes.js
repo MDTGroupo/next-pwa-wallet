@@ -12,9 +12,9 @@ import AccountHistory from './views/AccountHistory/AccountHistory.vue';
 import Settings from './views/Settings/Settings.vue';
 import Wallet from './views/Wallet/Wallet.vue';
 import DefiFMint from './views/DefiFMint/DefiFMint.vue';
-import DefiDepositFTM from './views/DefiDepositFTM/DefiDepositFTM.vue';
+import DefiDepositNEXT from './views/DefiDepositNEXT/DefiDepositNEXT.vue';
 import DefiBorrowFUSD from './views/DefiBorrowFUSD/DefiBorrowFUSD.vue';
-import DefiDepositFTMConfirmation from './views/DefiDepositFTMConfirmation/DefiDepositFTMConfirmation.vue';
+import DefiDepositNEXTConfirmation from './views/DefiDepositNEXTConfirmation/DefiDepositNEXTConfirmation.vue';
 import TransactionSuccessMessageView from './views/TransactionSuccessMessageView/TransactionSuccessMessageView.vue';
 import TransactionRejectMessageView from './views/TransactionRejectMessageView/TransactionRejectMessageView.vue';
 import DefiBorrowFUSDConfirmation from './views/DefiBorrowFUSDConfirmation/DefiBorrowFUSDConfirmation.vue';
@@ -60,7 +60,7 @@ import BlockchainPickerForm from '@/components/forms/BlockchainPickerForm.vue';
 import SendTransactionForm from '@/components/forms/SendTransactionForm.vue';
 import DelegationsInfo from '@/components/DelegationsInfo/DelegationsInfo.vue';
 import StakingInfo from '@/components/StakingInfo/StakingInfo.vue';
-// import UnstakeFTM from '@/components/UnstakeFTM/UnstakeFTM.vue';
+// import UnstakeNEXT from '@/components/UnstakeNEXT/UnstakeNEXT.vue';
 import StakeForm from '@/components/forms/StakeForm.vue';
 
 export const routes = [
@@ -209,9 +209,9 @@ export const routes = [
                         component: StakingInfo,
                     },
                     /*{
-                        name: 'staking-unstake-ftm',
+                        name: 'staking-unstake-next',
                         path: 'detail/:stakerId/undelegate',
-                        component: UnstakeFTM,
+                        component: UnstakeNEXT,
                     },*/
                     {
                         name: 'staking-stake-form',
@@ -361,12 +361,12 @@ export const routes = [
                     {
                         name: 'defi-manage-collateral',
                         path: 'manage-collateral',
-                        component: DefiDepositFTM,
+                        component: DefiDepositNEXT,
                     },
                     {
                         name: 'defi-manage-collateral-confirmation',
                         path: 'manage-collateral/confirmation',
-                        component: DefiDepositFTMConfirmation,
+                        component: DefiDepositNEXTConfirmation,
                     },
                     {
                         name: 'defi-manage-collateral-transaction-success-message',

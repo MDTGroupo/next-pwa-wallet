@@ -14,7 +14,7 @@
                     :to="{ name: 'account-blockchain-picker-form' }"
                     class="action"
                     title="Send"
-                    aria-label="Send FTM"
+                    aria-label="Send NEXT"
                 >
                     <span class="btn large same-size round">
                         <icon data="@/assets/svg/send.svg" width="20" height="20" aria-hidden="true" />
@@ -23,7 +23,7 @@
                 </router-link>
             </li>
             <li>
-                <router-link :to="{ name: 'account-receive' }" class="action" title="Receive" aria-label="Receive FTM">
+                <router-link :to="{ name: 'account-receive' }" class="action" title="Receive" aria-label="Receive NEXT">
                     <span class="btn large same-size round">
                         <icon data="@/assets/svg/receive.svg" width="20" height="20" aria-hidden="true" />
                     </span>

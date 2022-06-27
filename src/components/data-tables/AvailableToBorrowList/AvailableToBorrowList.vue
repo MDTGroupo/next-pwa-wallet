@@ -44,7 +44,7 @@ import FDataTable from '@/components/core/FDataTable/FDataTable.vue';
 import FCryptoSymbol from '@/components/core/FCryptoSymbol/FCryptoSymbol.vue';
 import { numberSort, stringSort } from '@/utils/array-sorting.js';
 import { formatNumberByLocale } from '@/filters.js';
-import { MAX_TOKEN_DECIMALS_IN_TABLES } from '@/plugins/fantom-web3-wallet.js';
+import { MAX_TOKEN_DECIMALS_IN_TABLES } from '@/plugins/next-web3-wallet.js';
 
 export default {
     name: 'AvailableToBorrowList',
@@ -147,7 +147,7 @@ export default {
          * @param {DefiToken[]} _value
          */
         tokens(_value) {
-            this.items = _value.filter((_item) => _item.isActive && _item.canDeposit && _item.symbol !== 'FTM');
+            this.items = _value.filter((_item) => _item.isActive && _item.canDeposit && _item.symbol !== 'NEXT');
 
             this.$emit('records-count', this.items.length);
         },

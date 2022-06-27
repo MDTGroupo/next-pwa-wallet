@@ -1,6 +1,6 @@
 <template>
     <div class="address-picker">
-        <template v-if="blockchain === 'fantom'">
+        <template v-if="blockchain === 'next'">
             <h2>Wallets</h2>
             <account-list pick-mode @account-picked="onAddressPicked" />
         </template>
@@ -22,9 +22,9 @@ export default {
         /** @type {WalletBlockchain} */
         blockchain: {
             type: String,
-            default: 'fantom',
+            default: 'next',
             validator: function (_value) {
-                return ['fantom', 'ethereum', 'binance'].indexOf(_value) !== -1;
+                return ['next', 'ethereum', 'binance'].indexOf(_value) !== -1;
             },
         },
     },

@@ -4,7 +4,7 @@ import WalletLink from 'walletlink';
 import Web3 from 'web3';
 import { store } from '@/store';
 import { SET_WALLETLINK_CHAIN_ID } from '@/plugins/walletlink/store.js';
-const OPERA_CHAIN_ID = appConfig.chainId;
+const NEXT_CHAIN_ID = appConfig.chainId;
 
 /** @type {Walletlink} */
 export let walletlink = null;
@@ -90,7 +90,7 @@ export class Walletlink {
      * @return {boolean}
      */
     isCorrectChainId(chainId) {
-        return this._provider && this._provider.chainId === (chainId || OPERA_CHAIN_ID);
+        return this._provider && this._provider.chainId === (chainId || NEXT_CHAIN_ID);
     }
 
     /**

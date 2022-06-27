@@ -67,9 +67,9 @@ export default {
         /** @type {WalletBlockchain} */
         blockchain: {
             type: String,
-            default: 'fantom',
+            default: 'next',
             validator: function (_value) {
-                return ['fantom', 'ethereum', 'binance'].indexOf(_value) !== -1;
+                return ['next', 'ethereum', 'binance'].indexOf(_value) !== -1;
             },
         },
     },
@@ -90,7 +90,7 @@ export default {
         selectBtnVisible() {
             const { blockchain } = this;
 
-            if (blockchain !== 'fantom') {
+            if (blockchain !== 'next') {
                 return this.getContactsByBlockchain(blockchain).length > 0;
             }
 
@@ -110,7 +110,7 @@ export default {
                 !!_address &&
                 this.$fWallet.isValidAddress(_address, this.blockchain) &&
                 !(
-                    (this.blockchain === 'fantom' && this.getAccountAndIndexByAddress(_address).index !== -1) ||
+                    (this.blockchain === 'next' && this.getAccountAndIndexByAddress(_address).index !== -1) ||
                     this.getContactAndIndexByAddress(_address).index !== -1
                 );
         },

@@ -1,7 +1,7 @@
 <template>
     <div v-if="!hidden" class="topdisclaimer" @click="onClick">
         <span class="topdisclaimer_text">
-            Always make sure the URL is <b><a href="https://pwawallet.fantom.network">pwawallet.fantom.network</a></b> -
+            Always make sure the URL is <b><a href="https://wallet.nextsmartchain.com">wallet.nextsmartchain.com</a></b> -
             bookmark it to be safe.
         </span>
         <button class="btn small close-btn same-size round light" title="Close window">

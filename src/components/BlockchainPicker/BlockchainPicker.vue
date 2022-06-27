@@ -1,18 +1,18 @@
 <template>
     <ul class="blockchain-picker no-markers">
         <li>
-            <label for="bc-opera">
+            <label for="bc-next">
                 <input
-                    id="bc-opera"
+                    id="bc-next"
                     v-model="blockchain"
                     type="radio"
                     name="blockchain"
-                    value="opera"
+                    value="next"
                     class="not-visible"
                 />
                 <span>
                     <icon
-                        data="@/assets/svg/chain-logos/fantom-active.svg"
+                        data="@/assets/svg/chain-logos/next-active.svg"
                         width="64"
                         height="64"
                         original
@@ -20,14 +20,14 @@
                         class="logo-active"
                     />
                     <icon
-                        data="@/assets/svg/chain-logos/fantom-inactive.svg"
+                        data="@/assets/svg/chain-logos/next-inactive.svg"
                         width="64"
                         height="64"
                         original
                         aria-hidden="true"
                         class="logo-inactive"
                     />
-                    <span class="title">Fantom Opera</span>
+                    <span class="title">Next Smart Chain</span>
                 </span>
             </label>
         </li>
@@ -117,7 +117,7 @@ export default {
 
     data() {
         return {
-            blockchain: 'opera',
+            blockchain: 'next',
             appConfig,
         };
     },

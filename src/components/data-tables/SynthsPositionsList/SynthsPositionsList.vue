@@ -112,7 +112,7 @@ import FDataTable from '@/components/core/FDataTable/FDataTable.vue';
 import FCryptoSymbol from '@/components/core/FCryptoSymbol/FCryptoSymbol.vue';
 import { numberSort, stringSort } from '@/utils/array-sorting.js';
 import DepositOrBorrowTokenWindow from '@/components/windows/DepositOrBorrowTokenWindow/DepositOrBorrowTokenWindow.vue';
-import { MAX_TOKEN_DECIMALS_IN_TABLES } from '@/plugins/fantom-web3-wallet.js';
+import { MAX_TOKEN_DECIMALS_IN_TABLES } from '@/plugins/next-web3-wallet.js';
 import FTokenValue from '@/components/core/FTokenValue/FTokenValue.vue';
 
 export default {
@@ -212,7 +212,7 @@ export default {
          * @param {DefiToken[]} _value
          */
         async tokens(_value) {
-            let tokens = _value.filter((_item) => _item.isActive && _item.symbol !== 'FTM');
+            let tokens = _value.filter((_item) => _item.isActive && _item.symbol !== 'NEXT');
 
             const items = tokens.filter((_item) => {
                 const debt = this.getDebt(_item);

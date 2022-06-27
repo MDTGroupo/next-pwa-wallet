@@ -289,7 +289,7 @@ export default {
                 this.minLock = this.delegationLockDuration + (!this.isValidator ? dayS : 0);
             }
 
-            this.amountDelegated = parseFloat(this.$fWallet.WEIToFTM(this.delegation.amountDelegated));
+            this.amountDelegated = parseFloat(this.$fWallet.WEIToNEXT(this.delegation.amountDelegated));
             this.amount = this.amountDelegated.toString(10);
 
             this.lockDaysValue = this.minLockDays.toString();
@@ -320,9 +320,9 @@ export default {
                 if (value <= amountDelegated && value >= 1) {
                     ok = true;
                 } else if (value > 0 && value < 1) {
-                    this.amountErrMsg = `You can't lock amount less than 1 FTM`;
+                    this.amountErrMsg = `You can't lock amount less than 1 NEXT`;
                 } else if (value >= 1) {
-                    this.amountErrMsg = `You can lock max ${amountDelegated} FTM`;
+                    this.amountErrMsg = `You can lock max ${amountDelegated} NEXT`;
                 }
             }
 

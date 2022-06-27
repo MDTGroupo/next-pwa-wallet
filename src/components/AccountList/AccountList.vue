@@ -42,8 +42,8 @@
                                     >
                                         <template #popover-text>
                                             Address copied to clipboard. <br />
-                                            Warning: Use this address to receive Opera FTM only. If you are receiving
-                                            FTM-ERC20 you need to use a different address!
+                                            Warning: Use this address to receive NEXT only. If you are receiving
+                                            NEXT-ERC20 you need to use a different address!
                                         </template>
                                     </f-copy-button>
 
@@ -68,12 +68,12 @@
                             </span>
                             <span class="col col-6-md">
                                 <span class="value">
-                                    <f-t-m-token-value :value="account.balance" convert no-currency />
-                                    <span class="ftm"> FTM</span>
+                                    <n-e-x-t-token-value :value="account.balance" convert no-currency />
+                                    <span class="next"> NEXT</span>
                                 </span>
                                 <span class="currency">
-                                    <f-t-m-token-value
-                                        :value="WEIToFTM(account.balance) * tokenPrice"
+                                    <n-e-x-t-token-value
+                                        :value="WEIToNEXT(account.balance) * tokenPrice"
                                         with-price-currency
                                         no-currency
                                     />
@@ -82,12 +82,12 @@
                             </span>
                             <span class="col col-6-md">
                                 <span class="value">
-                                    <f-t-m-token-value :value="account.totalBalance" convert no-currency />
-                                    <span class="ftm"> FTM</span>
+                                    <n-e-x-t-token-value :value="account.totalBalance" convert no-currency />
+                                    <span class="next"> NEXT</span>
                                 </span>
                                 <span class="currency">
-                                    <f-t-m-token-value
-                                        :value="WEIToFTM(account.totalBalance) * tokenPrice"
+                                    <n-e-x-t-token-value
+                                        :value="WEIToNEXT(account.totalBalance) * tokenPrice"
                                         with-price-currency
                                         no-currency
                                     />
@@ -130,7 +130,7 @@
 <script>
 import FCard from '../core/FCard/FCard.vue';
 import { mapGetters } from 'vuex';
-import { WEIToFTM } from '../../utils/transactions.js';
+import { WEIToNEXT } from '../../utils/transactions.js';
 import {
     DEACTIVATE_ACTIVE_ACCOUNT,
     SET_ACTIVE_ACCOUNT_ADDRESS,
@@ -143,12 +143,12 @@ import AccountName from '../AccountName/AccountName.vue';
 import { pollingMixin } from '../../mixins/polling.js';
 import FCopyButton from '../core/FCopyButton/FCopyButton.vue';
 import { isAriaAction } from '../../utils/aria.js';
-import FTMTokenValue from '@/components/core/FTMTokenValue/FTMTokenValue.vue';
+import NEXTTokenValue from '@/components/core/NEXTTokenValue/NEXTTokenValue.vue';
 
 export default {
     name: 'AccountList',
 
-    components: { FTMTokenValue, FCopyButton, AccountName, AccountSettingsWindow, FCard },
+    components: { NEXTTokenValue, FCopyButton, AccountName, AccountSettingsWindow, FCard },
 
     mixins: [eventBusMixin, pollingMixin],
 
@@ -299,7 +299,7 @@ export default {
             }
         },
 
-        WEIToFTM,
+        WEIToNEXT,
     },
 };
 </script>

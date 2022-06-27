@@ -46,7 +46,7 @@ export class DeFi {
         /** @type {DefiToken} */
         this.fusdToken = {};
         /** @type {DefiToken} */
-        this.ftmToken = {};
+        this.nextToken = {};
         /** Keys are token symbols, values are number of decimals. */
         this.tokenDecimals = {};
         /** Addresses of various contracts. */
@@ -99,7 +99,7 @@ export class DeFi {
     _setTokens(_tokens) {
         this.tokens = _tokens;
         this.fusdToken = _tokens.find((_item) => _item.symbol === 'FUSD');
-        this.ftmToken = _tokens.find((_item) => _item.symbol === 'FTM');
+        this.nextToken = _tokens.find((_item) => _item.symbol === 'NEXT');
 
         /*
         if (isObjectEmpty(this.tokenDecimals)) {
@@ -282,7 +282,7 @@ export class DeFi {
      */
     getTokenSymbol(_token) {
         return _token && _token.symbol
-            ? _token.symbol !== 'FTM'
+            ? _token.symbol !== 'NEXT'
                 ? lowercaseFirstChar(_token.symbol)
                 : _token.symbol
             : '';
@@ -636,7 +636,7 @@ export class DeFi {
      * @return {boolean}
      */
     canTokenBeDeposited(_token) {
-        return _token && _token.isActive && _token.canDeposit && _token.symbol !== 'FTM';
+        return _token && _token.isActive && _token.canDeposit && _token.symbol !== 'NEXT';
     }
 
     /**
@@ -645,7 +645,7 @@ export class DeFi {
      */
     canTokenBeTraded(_token) {
         // return _token && _token.isActive && _token.canTrade;
-        return _token && _token.isActive && (_token.canTrade || _token.symbol === 'FTM');
+        return _token && _token.isActive && (_token.canTrade || _token.symbol === 'NEXT');
         // return _token && _token.isActive && (_token.canTrade || _token.symbol === 'FUSD');
     }
 
@@ -732,7 +732,7 @@ export class DeFi {
                               priceDecimals
                               totalSupply
                               isActive
-                              canWrapFTM
+                              canWrapNEXT
                               canDeposit
                               canMint
                               canBorrow
@@ -754,7 +754,7 @@ export class DeFi {
                               priceDecimals
                               totalSupply
                               isActive
-                              canWrapFTM
+                              canWrapNEXT
                               canDeposit
                               canMint
                               canBorrow
@@ -1074,7 +1074,7 @@ export class DeFi {
      * @param {string} [_to]
      * @return {Promise<Number>}
      */
-    async fetchFTMTokenPrice(_to = 'USD') {
+    async fetchNEXTTokenPrice(_to = 'USD') {
         const data = await this.apolloClient.query({
             query: gql`
                 query Price($to: String!) {
@@ -1298,7 +1298,7 @@ export class DeFi {
         const tokens = await this.fetchERC20Tokens(_address);
         const testPairs = [
             ['FBNB', 'FETH'],
-            ['WFTM', 'FBNB'],
+            ['WNEXT', 'FBNB'],
         ];
 
         testPairs.forEach((_pair, _idx) => {

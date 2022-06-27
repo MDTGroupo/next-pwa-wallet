@@ -1,19 +1,19 @@
 <template>
     <div class="view-defi-lock-unlock">
         <h1 class="with-back-btn" data-focus>
-            Lock/Unlock wFTM
+            Lock/Unlock wNEXT
             <f-back-button :route-name="backButtonRoute" />
         </h1>
 
         <h2 class="perex">
-            Lock wFTM to increase the collateral ratio and mint fUSD, unlock wFTM after you repaid fUSD.
+            Lock wNEXT to increase the collateral ratio and mint fUSD, unlock wNEXT after you repaid fUSD.
         </h2>
 
         <defi-deposit
             :token="params.token"
             single-token
             lock-unlock-mode
-            token-symbol="WFTM"
+            token-symbol="WNEXT"
             on-submit-route="defi-lock-unlock-confirmation"
         />
     </div>

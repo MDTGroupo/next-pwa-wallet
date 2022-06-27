@@ -85,8 +85,8 @@ $bp-large: 992px !default;
 // main colors
 $body-color: #444 !default;
 $body-bg-color: #fff !default;
-$link-color: #00c !default;
-$theme-color: #4e85bb !default;
+$link-color: #00c00c !default;
+$theme-color: #1896f6 !default;
 $theme-light-color: #f4f4f4 !default;
 $dark-theme-light-color: lighten(desaturate(adjust-hue($theme-color, 1), 17.19), 27.06) !default;
 $disabled-color: #585858 !default;

@@ -43,7 +43,7 @@ import {
     ADD_COINBASE_ACCOUNT,
     ADD_WALLETCONNECT_ACCOUNT,
 } from './actions.type.js';
-import { fWallet } from '../plugins/fantom-web3-wallet.js';
+import { fWallet } from '../plugins/next-web3-wallet.js';
 import { arrayEquals } from '@/utils/array.js';
 import backingStorage from './storage';
 import { keystoresDB } from '@/utils/keystores-db.js';
@@ -117,11 +117,11 @@ export const store = new Vuex.Store({
         activeAccountIndex: -1,
         activeAccountAddress: '',
         /**
-         * Which blockchain FTM will be sent to
+         * Which blockchain NEXT will be sent to
          *
          * @type {BNBridgeDirection}
          */
-        sendDirection: 'OperaToOpera',
+        sendDirection: 'NextToNext',
         txFee: 0,
     },
 
@@ -148,7 +148,7 @@ export const store = new Vuex.Store({
             return _state.activeAccountAddress;
         },
         /**
-         * Which blockchain FTM will be sent to
+         * Which blockchain NEXT will be sent to
          *
          * @param {Object} _state
          * @return {BNBridgeDirection}

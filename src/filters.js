@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import web3utils from 'web3-utils';
-import { WEIToFTM } from './utils/transactions.js';
+import { WEIToNEXT } from './utils/transactions.js';
 
 export const filtersOptions = {
     currLocale: 'en-US',
@@ -156,7 +156,7 @@ export function formatCurrencyByLocale(
     _fractionDigits = filtersOptions.fractionDigits,
     _currency = filtersOptions.currency
 ) {
-    const value = _fromWEI ? WEIToFTM(_value) : _value;
+    const value = _fromWEI ? WEIToNEXT(_value) : _value;
 
     return formatNumberByLocale(value * _tokenPrice, _fractionDigits, _currency);
 }

@@ -1,6 +1,6 @@
-# Fantom PWA Wallet
+# NEXT PWA Wallet
 
-JavaScript and Vue based Fantom pwa wallet.
+JavaScript and Vue based NEXT PWA Wallet.
 
 We are using:
 * Node / NPM

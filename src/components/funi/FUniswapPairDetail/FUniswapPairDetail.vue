@@ -236,7 +236,7 @@ import FTokenValue from '@/components/core/FTokenValue/FTokenValue.vue';
 import FEllipsis from '@/components/core/FEllipsis/FEllipsis.vue';
 import FCopyButton from '@/components/core/FCopyButton/FCopyButton.vue';
 import appConfig from '../../../../app.config.js';
-import { WeiToFtm } from '@/utils/transactions.js';
+import { WeiToNEXT } from '@/utils/transactions.js';
 import FUniswapTransactionList from '@/components/data-tables/funi/FUniswapTransactionList/FUniswapTransactionList.vue';
 import dayjs from 'dayjs';
 import FPriceDiff from '@/components/core/FPriceDiff/FPriceDiff.vue';
@@ -455,7 +455,7 @@ export default {
             const nowMinus2d = now.subtract(2, 'd');
 
             if (reserveSeries.length > 0) {
-                this.totalLiquidity = WeiToFtm(reserveSeries[reserveSeries.length - 1].value);
+                this.totalLiquidity = WeiToNEXT(reserveSeries[reserveSeries.length - 1].value);
             }
 
             const data = await Promise.all([
@@ -466,11 +466,11 @@ export default {
             const nowMinus2dData = data[1];
 
             this.volume24h = nowMinus1dData.reduce((_prev, _item) => {
-                return _prev + WeiToFtm(_item.value);
+                return _prev + WeiToNEXT(_item.value);
             }, 0);
 
             this.prevVolume24h = nowMinus2dData.reduce((_prev, _item) => {
-                return _prev + WeiToFtm(_item.value);
+                return _prev + WeiToNEXT(_item.value);
             }, 0);
         },
 

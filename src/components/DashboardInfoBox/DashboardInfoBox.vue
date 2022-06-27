@@ -8,12 +8,12 @@
                     <h3 class="align-center-lg">
                         <span class="not-visible">Available balance (Sum)</span>
                         <span>
-                            <f-t-m-token-value :value="accountsBalance" no-currency />
-                            <span class="ftm"> FTM</span>
+                            <n-e-x-t-token-value :value="accountsBalance" no-currency />
+                            <span class="next"> NEXT</span>
                         </span>
                     </h3>
                     <div class="currency">
-                        <f-t-m-token-value
+                        <n-e-x-t-token-value
                             :value="accountsBalance * this.$store.state.tokenPrice"
                             with-price-currency
                             no-currency
@@ -25,12 +25,12 @@
                     <h3 class="align-center-lg">
                         <span class="not-visible">Total balance (Sum)</span>
                         <span>
-                            <f-t-m-token-value :value="accountsTotalBalance" no-currency />
-                            <span class="ftm"> FTM</span>
+                            <n-e-x-t-token-value :value="accountsTotalBalance" no-currency />
+                            <span class="next"> NEXT</span>
                         </span>
                     </h3>
                     <div class="currency">
-                        <f-t-m-token-value
+                        <n-e-x-t-token-value
                             :value="accountsTotalBalance * this.$store.state.tokenPrice"
                             with-price-currency
                             no-currency
@@ -45,28 +45,28 @@
 
 <script>
 import FCard from '../core/FCard/FCard.vue';
-import { WEIToFTM } from '../../utils/transactions.js';
+import { WEIToNEXT } from '../../utils/transactions.js';
 import { mapGetters } from 'vuex';
 import DashboardActionsBox from '../DashboardActionsBox/DashboardActionsBox.vue';
-import FTMTokenValue from '@/components/core/FTMTokenValue/FTMTokenValue.vue';
+import NEXTTokenValue from '@/components/core/NEXTTokenValue/NEXTTokenValue.vue';
 
 export default {
     name: 'DashboardInfoBox',
 
-    components: { FTMTokenValue, DashboardActionsBox, FCard },
+    components: { NEXTTokenValue, DashboardActionsBox, FCard },
 
     computed: {
         ...mapGetters(['accounts']),
 
         accountsBalance() {
             return this.accounts.reduce((_total, _currItem) => {
-                return _total + WEIToFTM(_currItem.balance);
+                return _total + WEIToNEXT(_currItem.balance);
             }, 0);
         },
 
         accountsTotalBalance() {
             return this.accounts.reduce((_total, _currItem) => {
-                return _total + WEIToFTM(_currItem.totalBalance);
+                return _total + WEIToNEXT(_currItem.totalBalance);
             }, 0);
         },
     },

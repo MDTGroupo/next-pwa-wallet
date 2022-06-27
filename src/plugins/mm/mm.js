@@ -5,15 +5,15 @@ import { store } from '@/store';
 import { SET_ACCOUNT, SET_CHAIN_ID } from '@/plugins/mm/store.js';
 import './mm.types.js';
 
-const OPERA_CHAIN_ID = appConfig.chainId;
+const NEXT_CHAIN_ID = appConfig.chainId;
 
 /** @type {MMChain} */
-export const OPERA_MAINNET = {
+export const NEXT_MAINNET = {
     chainId: appConfig.mainnet.chainId,
-    chainName: 'Fantom Opera Mainnet',
+    chainName: 'Next Smart Chain',
     nativeCurrency: {
-        name: 'Fantom',
-        symbol: 'FTM',
+        name: 'NEXT',
+        symbol: 'NEXT',
         decimals: 18,
     },
     rpcUrls: [appConfig.mainnet.rpc],
@@ -21,12 +21,12 @@ export const OPERA_MAINNET = {
 };
 
 /** @type {MMChain} */
-export const OPERA_TESTNET = {
+export const NEXT_TESTNET = {
     chainId: appConfig.testnet.chainId,
-    chainName: 'Fantom Testnet',
+    chainName: 'NEXT Testnet',
     nativeCurrency: {
-        name: 'Fantom',
-        symbol: 'FTM',
+        name: 'NEXT',
+        symbol: 'NEXT',
         decimals: 18,
     },
     rpcUrls: [appConfig.testnet.rpc],
@@ -107,7 +107,7 @@ export class MM {
      * @return {boolean}
      */
     isCorrectChainId() {
-        return this._provider && this._provider.chainId === OPERA_CHAIN_ID;
+        return this._provider && this._provider.chainId === NEXT_CHAIN_ID;
     }
 
     /**

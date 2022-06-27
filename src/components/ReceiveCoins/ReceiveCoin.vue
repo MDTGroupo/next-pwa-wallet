@@ -1,7 +1,7 @@
 <template>
     <div class="receive-coin">
         <div class="align-center">
-            Send your {{ $bnb.getFTMCurrencyByDirection(direction) }} to:
+            Send your {{ $bnb.getNEXTCurrencyByDirection(direction) }} to:
 
             <template v-if="address">
                 <h3 class="address break-word">
@@ -21,7 +21,7 @@
 
                 <br /><br />
                 <f-message type="warning" class="align-center">
-                    All bridge transactions incur a fee of {{ minFTMToTransfer }} FTM, deducted from the transfer
+                    All bridge transactions incur a fee of {{ minNEXTToTransfer }} NEXT, deducted from the transfer
                     amount.
                 </f-message>
 
@@ -80,7 +80,7 @@ export default {
             error: '',
             loading: false,
             stData: {},
-            minFTMToTransfer: appConfig.bnbridgeApi.minFTMToTransfer,
+            minNEXTToTransfer: appConfig.bnbridgeApi.minNEXTToTransfer,
         };
     },
 
@@ -89,9 +89,9 @@ export default {
 
         direction() {
             if (this.coin === 'BNB') {
-                return 'BinanceToOpera';
+                return 'BinanceToNEXT';
             } else {
-                return 'EthereumToOpera';
+                return 'EthereumToNEXT';
             }
         },
     },
@@ -107,7 +107,7 @@ export default {
 
                 this.stData = await this.$bnb.swapToken({
                     direction,
-                    operaAddress: this.currentAccount.address,
+                    nextAddress: this.currentAccount.address,
                 });
 
                 this.stData.direction = direction;

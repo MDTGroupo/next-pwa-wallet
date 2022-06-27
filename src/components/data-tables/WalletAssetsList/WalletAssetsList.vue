@@ -97,7 +97,7 @@
                     <div class="col-6 f-row-label">{{ column.label }}</div>
                     <div class="col break-word">
                         <router-link
-                            v-if="item.symbol !== 'SFTM'"
+                            v-if="item.symbol !== 'SNEXT'"
                             :to="{ name: 'account-send-erc20', params: { token: { ...item } } }"
                             class="action"
                             title="Send"
@@ -108,7 +108,7 @@
                 </div>
                 <template v-else>
                     <router-link
-                        v-if="item.symbol !== 'SFTM'"
+                        v-if="item.symbol !== 'SNEXT'"
                         :to="{ name: 'account-send-erc20', params: { token: { ...item } } }"
                         class="action"
                         title="Send"
@@ -126,7 +126,7 @@ import FDataTable from '@/components/core/FDataTable/FDataTable.vue';
 import FCryptoSymbol from '@/components/core/FCryptoSymbol/FCryptoSymbol.vue';
 import { stringSort } from '@/utils/array-sorting.js';
 import { cloneObject } from '@/utils';
-import { MAX_TOKEN_DECIMALS_IN_TABLES } from '@/plugins/fantom-web3-wallet.js';
+import { MAX_TOKEN_DECIMALS_IN_TABLES } from '@/plugins/next-web3-wallet.js';
 import FTokenValue from '@/components/core/FTokenValue/FTokenValue.vue';
 
 export default {

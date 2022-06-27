@@ -2,7 +2,7 @@
     <div class="send-transaction-form">
         <h2 :id="labelId" class="with-back-btn align-center" data-focus>
             <template v-if="token.address"> Send {{ tokenSymbol }} </template>
-            <template v-else>Send Opera FTM</template>
+            <template v-else>Send NEXT</template>
             <f-back-button ref="backButton" :route-name="getBackButtonRoute('account-send-transaction-form')" />
         </h2>
 
@@ -52,7 +52,7 @@
                             field-size="large"
                             name="address"
                             :validator="checkAddress"
-                            :validate-on-input="d_sendDirection === 'OperaToOpera'"
+                            :validate-on-input="d_sendDirection === 'NEXTToNEXT'"
                         >
                             <template #bottom="sProps">
                                 <f-message v-show="sProps.showErrorMessage" type="error" alert with-icon>
@@ -66,24 +66,24 @@
                         </address-field>
 
                         <f-input
-                            v-if="d_sendDirection !== 'OperaToEthereum' && !token.address"
+                            v-if="d_sendDirection !== 'NEXTToEthereum' && !token.address"
                             label="Memo (optional)"
                             field-size="large"
                             name="memo"
                         />
 
                         <div class="align-center form-buttons">
-                            <template v-if="d_sendDirection !== 'OperaToOpera'">
+                            <template v-if="d_sendDirection !== 'NEXTToNEXT'">
                                 <f-message type="warning" class="align-center">
-                                    All bridge transactions incur a fee of {{ minFTMToTransfer }} FTM, deducted from the
-                                    transfer amount.
+                                    All bridge transactions incur a fee of {{ minNEXTToTransfer }} NEXT, deducted from
+                                    the transfer amount.
                                 </f-message>
                                 <f-message
-                                    v-if="amount >= minFTMToTransfer && checkAmount(amount)"
+                                    v-if="amount >= minNEXTToTransfer && checkAmount(amount)"
                                     type="info"
                                     class="big"
                                 >
-                                    You will receive <b>{{ amount - minFTMToTransfer }} FTM</b>
+                                    You will receive <b>{{ amount - minNEXTToTransfer }} NEXT</b>
                                 </f-message>
                                 <br />
                             </template>
@@ -165,14 +165,14 @@ export default {
 
     data() {
         return {
-            d_sendDirection: 'OperaToOpera',
+            d_sendDirection: 'NEXTToNEXT',
             amountErrMsg: 'Invalid amount',
             gasPrice: '',
             amount: '',
-            sendToErrorMsg: 'Enter a valid Opera FTM address or domain name',
+            sendToErrorMsg: 'Enter a valid NEXT address or domain name',
             /** Balance of BNB or ETH account. */
             ETHOrBNBAccountBalance: '',
-            minFTMToTransfer: appConfig.bnbridgeApi.minFTMToTransfer,
+            minNEXTToTransfer: appConfig.bnbridgeApi.minNEXTToTransfer,
             resolvedAddress: null,
             windowTitle: '',
             labelId: getUniqueId(),
@@ -232,7 +232,7 @@ export default {
         tokenSymbol() {
             const { token } = this;
 
-            return token.address ? this.$defi.getTokenSymbol(token) : 'FTM';
+            return token.address ? this.$defi.getTokenSymbol(token) : 'NEXT';
         },
 
         /**
@@ -242,10 +242,10 @@ export default {
             let sendTo = 'Send To (address or domain)';
 
             switch (this.d_sendDirection) {
-                case 'OperaToBinance':
+                case 'NEXTToBinance':
                     sendTo = 'BNB Receive Address';
                     break;
-                case 'OperaToEthereum':
+                case 'NEXTToEthereum':
                     sendTo = 'ETH Receive Address';
                     break;
             }
@@ -257,13 +257,13 @@ export default {
          * @return {WalletBlockchain}
          */
         blockchain() {
-            let blockchain = 'fantom';
+            let blockchain = 'next';
 
             switch (this.d_sendDirection) {
-                case 'OperaToBinance':
+                case 'NEXTToBinance':
                     blockchain = 'binance';
                     break;
-                case 'OperaToEthereum':
+                case 'NEXTToEthereum':
                     blockchain = 'ethereum';
                     break;
             }
@@ -297,11 +297,11 @@ export default {
 
             this.ETHOrBNBAccountBalance = '';
 
-            if (d_sendDirection === 'OperaToOpera') {
-                value = (await this.resolveAddress(value, 'FTM', 'OPERA')) || value;
+            if (d_sendDirection === 'NEXTToNEXT') {
+                value = (await this.resolveAddress(value, 'NEXT', 'NEXT')) || value;
                 validAddress = this.$fWallet.isValidAddress(value);
-                this.sendToErrorMsg = 'Enter a valid Opera FTM address or domain name';
-            } else if (d_sendDirection === 'OperaToBinance') {
+                this.sendToErrorMsg = 'Enter a valid NEXT address or domain name';
+            } else if (d_sendDirection === 'NEXTToBinance') {
                 validAddress = this.$bnb.isBNBAddress(value);
                 this.sendToErrorMsg = 'Enter a valid BNB address';
 
@@ -313,7 +313,7 @@ export default {
                     } else {
                         try {
                             const data = await this.$bnb.getBNBBalances(value);
-                            this.ETHOrBNBAccountBalance = `Current Fantom Balance: ${data.balance} FTM`;
+                            this.ETHOrBNBAccountBalance = `Current Next Balance: ${data.balance} NEXT`;
                         } catch (_error) {
                             validAddress = false;
 
@@ -325,14 +325,14 @@ export default {
                         }
                     }
                 }
-            } else if (d_sendDirection === 'OperaToEthereum') {
+            } else if (d_sendDirection === 'NEXTToEthereum') {
                 validAddress = this.$bnb.isETHAddress(value);
                 this.sendToErrorMsg = 'Enter a valid ETH address';
 
                 if (validAddress) {
                     try {
                         const balance = await this.$bnb.getETHBalance(value);
-                        this.ETHOrBNBAccountBalance = `Current Fantom Balance: ${balance} FTM`;
+                        this.ETHOrBNBAccountBalance = `Current Next Balance: ${balance} NEXT`;
                     } catch (_error) {
                         validAddress = false;
 
@@ -378,8 +378,8 @@ export default {
                 ? parseFloat(this.maxRemainingErc20TokenBalance)
                 : parseFloat(this.remainingBalance);
             const value = parseFloat(_value);
-            const { minFTMToTransfer } = this;
-            const operaToBridge = this.d_sendDirection !== 'OperaToOpera';
+            const { minNEXTToTransfer } = this;
+            const operaToBridge = this.d_sendDirection !== 'NEXTToNEXT';
             const { tokenSymbol } = this;
             let ok = false;
 
@@ -387,8 +387,8 @@ export default {
 
             if (!isNaN(value)) {
                 if (value <= remainingBalance && value > 0) {
-                    if (operaToBridge && value < minFTMToTransfer) {
-                        this.amountErrMsg = `You must transfer at least ${minFTMToTransfer} ${tokenSymbol}`;
+                    if (operaToBridge && value < minNEXTToTransfer) {
+                        this.amountErrMsg = `You must transfer at least ${minNEXTToTransfer} ${tokenSymbol}`;
                     } else {
                         ok = true;
                     }
@@ -421,11 +421,11 @@ export default {
             const { d_sendDirection } = this;
 
             if (this.currentAccount && data.amount) {
-                if (d_sendDirection === 'OperaToOpera') {
-                    data.opera_address = this.resolvedAddress || data.address;
-                } else if (d_sendDirection === 'OperaToBinance') {
+                if (d_sendDirection === 'NEXTToNEXT') {
+                    data.next_address = this.resolvedAddress || data.address;
+                } else if (d_sendDirection === 'NEXTToBinance') {
                     data.bnb_address = data.address;
-                } else if (d_sendDirection === 'OperaToEthereum') {
+                } else if (d_sendDirection === 'NEXTToEthereum') {
                     data.eth_address = data.address;
                 }
 
@@ -442,8 +442,8 @@ export default {
                         memo: '',
 
                         bnb_address: 'bnb1jvlepaalght59kwhfh44k54u3elmhuurnt0lxc',
-                        direction: 'OperaToBinance',
-                        opera_address: '0xE504aF2999644A86162Df892E86E3809a365AEBa',
+                        direction: 'NEXTToBinance',
+                        next_address: '0xE504aF2999644A86162Df892E86E3809a365AEBa',
                         uuid: 'd727d651-c06e-d770-fb35-87fc7a4f0ade',
                         tx: '0xefb8001268d8b5441678004b9641f26ad6b1577b',
                     },
@@ -451,9 +451,7 @@ export default {
 */
 
                 this.windowTitle =
-                    this.token && this.token.symbol
-                        ? `Send ${this.$defi.getTokenSymbol(this.token)}`
-                        : 'Send Opera FTM';
+                    this.token && this.token.symbol ? `Send ${this.$defi.getTokenSymbol(this.token)}` : 'Send NEXT';
 
                 this.$refs.confirmationWindow.changeComponent('transaction-confirmation', {
                     txData: { ...data },
@@ -467,7 +465,7 @@ export default {
                     from: 'send-transaction-form',
                     data: {
                         ...data,
-                        // fee: this.$fWallet.WEIToFTM(this.$fWallet.getTransactionFee(this.gasPrice)),
+                        // fee: this.$fWallet.WEIToNEXT(this.$fWallet.getTransactionFee(this.gasPrice)),
                     },
                 });*/
             }

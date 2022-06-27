@@ -40,7 +40,7 @@ export function detect(_window) {
             version = nAgt.substring(verOffset + 8);
         }
     }
-    // Opera Next
+    // NEXT Next
     if ((verOffset = nAgt.indexOf('OPR')) !== -1) {
         browser = 'Opera';
         version = nAgt.substring(verOffset + 4);

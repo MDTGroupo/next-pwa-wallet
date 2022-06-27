@@ -89,14 +89,14 @@
 import TxConfirmation from '@/components/TxConfirmation/TxConfirmation.vue';
 import LedgerConfirmationContent from '@/components/LedgerConfirmationContent/LedgerConfirmationContent.vue';
 import { mapGetters } from 'vuex';
-import { toFTM } from '@/utils/transactions.js';
+import { toNEXT } from '@/utils/transactions.js';
 import FBackButton from '@/components/core/FBackButton/FBackButton.vue';
 import { getAppParentNode } from '@/app-structure.js';
 import FMessage from '@/components/core/FMessage/FMessage.vue';
-import uniswapUtils from 'fantom-ledgerjs/src/uniswap-utils.js';
-// import erc20Utils from 'fantom-ledgerjs/src/erc20-utils.js';
+import uniswapUtils from 'next-ledgerjs/src/uniswap-utils.js';
+// import erc20Utils from 'next-ledgerjs/src/erc20-utils.js';
 import Web3 from 'web3';
-import erc20Utils from 'fantom-ledgerjs/src/erc20-utils.js';
+import erc20Utils from 'next-ledgerjs/src/erc20-utils.js';
 import appConfig from '../../../../app.config.js';
 import { getUniqueId } from '@/utils';
 import FTokenValue from '@/components/core/FTokenValue/FTokenValue.vue';
@@ -391,7 +391,7 @@ export default {
             }
         },
 
-        toFTM,
+        toNEXT,
     },
 };
 </script>

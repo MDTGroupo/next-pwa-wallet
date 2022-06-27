@@ -73,7 +73,7 @@
 
 <script>
 import { filtersOptions, formatDate, prepareTimestamp, timestampToDate } from '../../filters.js';
-import { WEIToFTM } from '../../utils/transactions.js';
+import { WEIToNEXT } from '../../utils/transactions.js';
 import FDataTable from '../core/FDataTable/FDataTable.vue';
 import dayjs from 'dayjs';
 import { sortByHex } from '../../utils/array-sorting.js';
@@ -113,9 +113,9 @@ export default {
             columns: [
                 {
                     name: 'amount',
-                    label: 'Amount (FTM)',
+                    label: 'Amount (NEXT)',
                     formatter: (_value) => {
-                        return WEIToFTM(_value);
+                        return WEIToNEXT(_value);
                     },
                     width: '234px',
                 },

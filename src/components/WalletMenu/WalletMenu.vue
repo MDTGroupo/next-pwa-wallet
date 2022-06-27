@@ -12,15 +12,15 @@
             <div class="header">
                 <div class="header-logo">
                     <router-link to="/">
-                        <img src="fantom-logo.svg" alt="" class="not-fluid" />
+                        <img src="next-logo.svg" alt="" class="not-fluid" />
                     </router-link>
                 </div>
             </div>
             <div class="body">
                 <div class="logo">
                     <router-link to="/" class="logo-link">
-                        <icon data="@/assets/svg/fantom.svg" width="40" height="50" />
-                        <span class="wallet-label">fWallet</span>
+                        <icon class="wallet-icon" data="@/assets/svg/next.svg" width="40" height="30" />
+                        <span class="wallet-label">Wallet</span>
                     </router-link>
                 </div>
                 <f-simple-navigation :items="navigation" aria-label="main navigation" />
@@ -28,7 +28,7 @@
             <div class="footer">
                 <social-media-links />
                 <div class="copyright">
-                    <a href="https://fantom.foundation/" target="_blank" rel="noopener">©2020 Fantom Foundation</a>
+                    <a href="https://next.foundation/" target="_blank" rel="noopener">©2022 NEXT Foundation</a>
                 </div>
             </div>
         </div>
@@ -50,10 +50,10 @@ import settingsIcon from '../../assets/svg/monochrome/Sidebar/Settings.svg';
 import walletIcon from '../../assets/svg/monochrome/Sidebar/Wallet.svg';
 // import defiIcon from '../../assets/svg/monochrome/Sidebar/DeFi.svg';
 import stakingIcon from '../../assets/svg/monochrome/Sidebar/Staking.svg';
-import funiIcon from '../../assets/svg/monochrome/Sidebar/fUNI.svg';
-import swapIcon from '../../assets/svg/defi/ftrade.svg';
+//import funiIcon from '../../assets/svg/monochrome/Sidebar/fUNI.svg';
+//import swapIcon from '../../assets/svg/defi/ftrade.svg';
 import voteIcon from '../../assets/svg/monochrome/Sidebar/Governance.svg';
-import fmintIcon from '../../assets/svg/defi/mint.svg';
+//import fmintIcon from '../../assets/svg/defi/mint.svg';
 
 /*
 import homeIcon from '../../assets/svg/home.svg';
@@ -120,7 +120,7 @@ export default {
                     stakingLink: true,
                     fill: true,
                 },
-                {
+                /*{
                     url: {
                         name: 'fmint',
                     },
@@ -138,7 +138,7 @@ export default {
                     fill: true,
                     fswapLink: true,
                 },
-                /*{
+                {
                     url: {
                         name: 'defi',
                     },
@@ -146,7 +146,7 @@ export default {
                     icon: defiIcon,
                     deFiLink: true,
                     fill: true,
-                },*/
+                },
                 {
                     url: {
                         name: 'funiswap',
@@ -155,7 +155,7 @@ export default {
                     icon: funiIcon,
                     fill: true,
                     fUniswapLink: true,
-                },
+                },*/
                 {
                     url: {
                         name: 'gov',
@@ -269,9 +269,9 @@ export default {
             this.setMenuItemUrl('walletLink', _account);
             this.setMenuItemUrl('stakingLink', _account, STAKING_DEFAULT_VIEW);
             // this.setMenuItemUrl('deFiLink', _account, 'defi-home');
-            this.setMenuItemUrl('fmintLink', _account, 'defi-fmint');
-            this.setMenuItemUrl('fswapLink', _account, 'defi-ftrade');
-            this.setMenuItemUrl('fUniswapLink', _account, 'funiswap-swap');
+            // this.setMenuItemUrl('fmintLink', _account, 'defi-fmint');
+            // this.setMenuItemUrl('fswapLink', _account, 'defi-ftrade');
+            // this.setMenuItemUrl('fUniswapLink', _account, 'funiswap-swap');
             this.setMenuItemUrl('govLink', _account, 'gov-home');
         },
 

@@ -86,7 +86,7 @@ import FCryptoSymbol from '@/components/core/FCryptoSymbol/FCryptoSymbol.vue';
 import { numberSort, stringSort } from '@/utils/array-sorting.js';
 import DepositOrBorrowTokenWindow from '@/components/windows/DepositOrBorrowTokenWindow/DepositOrBorrowTokenWindow.vue';
 import { formatNumberByLocale } from '@/filters.js';
-import { MAX_TOKEN_DECIMALS_IN_TABLES } from '@/plugins/fantom-web3-wallet.js';
+import { MAX_TOKEN_DECIMALS_IN_TABLES } from '@/plugins/next-web3-wallet.js';
 
 export default {
     name: 'OpenPositionsList',
@@ -178,7 +178,7 @@ export default {
          * @param {DefiToken[]} _value
          */
         tokens(_value) {
-            const items = _value.filter((_item) => _item.isActive && _item.canDeposit && _item.symbol !== 'FTM');
+            const items = _value.filter((_item) => _item.isActive && _item.canDeposit && _item.symbol !== 'NEXT');
 
             this.items = items.filter((_item) => {
                 const collateral = this.getCollateral(_item);

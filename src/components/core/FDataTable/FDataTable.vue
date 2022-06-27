@@ -156,7 +156,7 @@ import FCard from '../FCard/FCard.vue';
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
 import { isAriaAction } from '@/utils/aria.js';
 
-const GRID_STORAGE_KEY = 'fantom-wallet-data-grid';
+const GRID_STORAGE_KEY = 'next-wallet-data-grid';
 
 export default {
     components: {

@@ -4,7 +4,7 @@
             :tx="tx"
             confirmation-comp-name="delegation-unlock-confirmation"
             send-button-label="Unlock"
-            password-label="Please enter your wallet password to unlock your delegated FTM"
+            password-label="Please enter your wallet password to unlock your delegated NEXT"
             set-tmp-pwd
             :tmp-pwd-code="tmpPwdCode"
             :on-send-transaction-success="onSendTransactionSuccess"
@@ -14,7 +14,7 @@
             class="min-h-100"
             @cancel-button-click="$emit('cancel-button-click', $event)"
         >
-            <h2 class="not-visible" data-focus>Unlock FTM - Confirmation</h2>
+            <h2 class="not-visible" data-focus>Unlock NEXT - Confirmation</h2>
 
             <div class="transaction-info">
                 <div class="row no-collapse">
@@ -29,7 +29,7 @@
                     <div class="col break-word">
                         {{ currentAccount.address }}
                         <span class="f-row-label">
-                            ( <f-t-m-token-value :value="currentAccount.balance" convert /> )
+                            ( <n-e-x-t-token-value :value="currentAccount.balance" convert /> )
                         </span>
                     </div>
                 </div>
@@ -49,37 +49,37 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import sfcUtils from 'fantom-ledgerjs/src/sfc-utils.js';
+import sfcUtils from 'next-ledgerjs/src/sfc-utils.js';
 import TxConfirmation from '../TxConfirmation/TxConfirmation.vue';
 import LedgerConfirmationContent from '../LedgerConfirmationContent/LedgerConfirmationContent.vue';
 import { getUniqueId } from '@/utils';
-import FTMTokenValue from '@/components/core/FTMTokenValue/FTMTokenValue.vue';
+import NEXTTokenValue from '@/components/core/NEXTTokenValue/NEXTTokenValue.vue';
 import appConfig from '../../../app.config.js';
 
 export default {
     name: 'DelegationUnlockConfirmation',
 
-    components: { FTMTokenValue, LedgerConfirmationContent, TxConfirmation },
+    components: { NEXTTokenValue, LedgerConfirmationContent, TxConfirmation },
 
     props: {
-        /** `accountInfo` object from `UnstakeFTM` component. */
+        /** `accountInfo` object from `UnstakeNEXT` component. */
         accountInfo: {
             type: Object,
             default() {
                 return {};
             },
         },
-        /** Amount of FTM tokens to unstake */
+        /** Amount of NEXT tokens to unstake */
         amount: {
             type: Number,
             default: 1,
         },
-        /** Amount of FTM tokens to unlock. (hex number) */
+        /** Amount of NEXT tokens to unlock. (hex number) */
         toUnlockAmount: {
             type: String,
             default: '',
         },
-        /** Unlock maximal amount of FTM tokens */
+        /** Unlock maximal amount of NEXT tokens */
         undelegateMax: {
             type: Boolean,
             default: false,

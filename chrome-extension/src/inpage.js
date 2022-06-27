@@ -3,7 +3,7 @@
 /**
  * Simplified implementation of EventEmitter
  */
-class FantomEventEmitter {
+class NextEventEmitter {
 
     events = {};
 
@@ -106,7 +106,7 @@ class FantomEventEmitter {
 /**
  * Implementation of EIP-1193 provider
  */
-class FantomInpageProvider extends FantomEventEmitter {
+class NextInpageProvider extends NextEventEmitter {
 
     _messageCounter = Math.floor(Math.random() * 4294967295);
     _isConnected = false;
@@ -241,9 +241,9 @@ class FantomInpageProvider extends FantomEventEmitter {
     _sendToContentScript(payload, callback = null) {
         let id = this._getMessageId();
         if (callback) this.messageCallbacks[id] = callback;
-        if (this.debug) console.log('FantomPwaWallet request', id, payload);
+        if (this.debug) console.log('NextPwaWallet request', id, payload);
         window.postMessage({
-            target: 'FantomPWAwalletBackground',
+            target: 'NextPWAwalletBackground',
             data: payload,
             msgId: id,
         }, location.origin);
@@ -254,22 +254,22 @@ class FantomInpageProvider extends FantomEventEmitter {
         if (event.origin !== location.origin) return
         if (event.source !== window) return
         if (typeof msg !== 'object') return
-        if (msg.target !== 'FantomPWAwalletInpage') return
+        if (msg.target !== 'NextPWAwalletInpage') return
         if (!msg.data) return
         let data = msg.data;
 
-        if (this.debug) console.log('FantomPwaWallet response', msg.msgId, data);
+        if (this.debug) console.log('NextPwaWallet response', msg.msgId, data);
 
         if (msg.msgId && typeof this.messageCallbacks[msg.msgId] !== 'undefined') {
             let callback = this.messageCallbacks[msg.msgId];
             delete this.messageCallbacks[msg.msgId];
             if (data.error) {
-                console.log('FantomPwaWallet RPC error', data);
+                console.log('NextPwaWallet RPC error', data);
                 callback(data.error, null); // (error, result)
             } else {
                 callback(null, data); // (error, result)
             }
-            if (this.debug) console.log('FantomPwaWallet response callback called', msg.msgId, data);
+            if (this.debug) console.log('NextPwaWallet response callback called', msg.msgId, data);
         }
 
         if (data.method === 'wallet_accountsChanged') {
@@ -295,15 +295,15 @@ class FantomInpageProvider extends FantomEventEmitter {
      * internally initiated request.
      */
     _handleAccountsChanged (accounts, isEthAccounts = false, isInternal = false) {
-        if (this.debug) console.log('FantomPwaWallet accountsChanged', accounts);
+        if (this.debug) console.log('NextPwaWallet accountsChanged', accounts);
         this.emit('accountsChanged', accounts)
     }
 }
 
-window.ethereum = new FantomInpageProvider();
+window.ethereum = new NextInpageProvider();
 window.web3 = { currentProvider: window.ethereum }; // for old MM compatibility
 window.addEventListener("message", function (event) {
     window.ethereum._receiveFromContentScript(event);
 });
 window.dispatchEvent(new Event('ethereum#initialized'));
-console.log("Fantom-PWA-Wallet initialized");
+console.log("Next-PWA-Wallet initialized");

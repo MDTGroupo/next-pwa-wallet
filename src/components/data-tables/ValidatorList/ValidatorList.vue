@@ -18,14 +18,14 @@
                         <div class="col break-word">
                             <div class="inline-img validator-img">
                                 <img v-if="value" :src="value" :alt="item.stakerInfo.name" class="not-fluid" />
-                                <img v-else src="img/fantom-logo.png" alt="fantom logo" class="not-fluid" />
+                                <img v-else src="img/next-logo.png" alt="next logo" class="not-fluid" />
                             </div>
                         </div>
                     </div>
                     <template v-else>
                         <div class="inline-img validator-img">
                             <img v-if="value" :src="value" :alt="item.stakerInfo.name" class="not-fluid" />
-                            <img v-else src="img/fantom-logo.png" alt="fantom logo" class="not-fluid" />
+                            <img v-else src="img/next-logo.png" alt="next logo" class="not-fluid" />
                         </div>
                     </template>
                 </template>
@@ -130,7 +130,7 @@
 <script>
 import FDataTable from '../../core/FDataTable/FDataTable.vue';
 import gql from 'graphql-tag';
-import { WEIToFTM } from '../../../utils/transactions.js';
+import { WEIToNEXT } from '../../../utils/transactions.js';
 import { formatHexToInt, timestampToDate, numToFixed, formatNumberByLocale } from '../../../filters.js';
 import { sortByHex, sortByLocaleString } from '../../../utils/array-sorting.js';
 import appConfig from '../../../../app.config.js';
@@ -179,7 +179,7 @@ export default {
                         delegatedMe
                         isOffline
                         isCheater
-                        stakerInfo {
+                        validatorInfo {
                             name
                             website
                             contact
@@ -207,10 +207,10 @@ export default {
                     shuffle(data);
 
                     data.forEach((_item, _idx) => {
-                        // _item.total_staked = WEIToFTM(_item.stake) + WEIToFTM(_item.delegatedMe);
-                        totals.selfStaked += parseFloat(numToFixed(WEIToFTM(_item.stake), 0));
-                        totals.totalDelegated += parseFloat(numToFixed(WEIToFTM(_item.delegatedMe), 0));
-                        totals.totalStaked += parseFloat(numToFixed(WEIToFTM(_item.totalStake), 0));
+                        // _item.total_staked = WEIToNEXT(_item.stake) + WEIToNEXT(_item.delegatedMe);
+                        totals.selfStaked += parseFloat(numToFixed(WEIToNEXT(_item.stake), 0));
+                        totals.totalDelegated += parseFloat(numToFixed(WEIToNEXT(_item.delegatedMe), 0));
+                        totals.totalStaked += parseFloat(numToFixed(WEIToNEXT(_item.totalStake), 0));
 
                         if (!_item.stakerInfo) {
                             _item.stakerInfo = {};
@@ -302,14 +302,14 @@ export default {
                 {
                     name: 'stake',
                     label: this.$t('view_validator_list.self_staked'),
-                    formatter: (_value) => formatNumberByLocale(WEIToFTM(_value), 0),
+                    formatter: (_value) => formatNumberByLocale(WEIToNEXT(_value), 0),
                     sortFunc: sortByHex,
                     cssClass: 'align-end',
                 },
                 {
                     name: 'delegatedMe',
                     label: this.$t('view_validator_list.delegated'),
-                    formatter: (_value) => formatNumberByLocale(WEIToFTM(_value), 0),
+                    formatter: (_value) => formatNumberByLocale(WEIToNEXT(_value), 0),
                     sortFunc: sortByHex,
                     cssClass: 'align-end',
                 },
@@ -317,7 +317,7 @@ export default {
                 {
                     name: 'totalStake',
                     label: this.$t('view_validator_list.total_staked'),
-                    formatter: (_value) => formatNumberByLocale(WEIToFTM(_value), 0),
+                    formatter: (_value) => formatNumberByLocale(WEIToNEXT(_value), 0),
                     sortFunc: sortByHex,
                     // sortDir: 'desc',
                     cssClass: 'align-end',
@@ -418,7 +418,7 @@ export default {
             }
         },
 
-        WEIToFTM,
+        WEIToNEXT,
         timestampToDate,
         numToFixed,
     },

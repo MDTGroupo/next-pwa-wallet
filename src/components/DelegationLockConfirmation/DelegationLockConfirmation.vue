@@ -24,7 +24,7 @@
                     <div class="col-3 f-row-label">From</div>
                     <div class="col break-word">
                         {{ currentAccount.address }}
-                        <!--<span class="f-row-label">( {{ toFTM(currentAccount.balance) }} FTM )</span>-->
+                        <!--<span class="f-row-label">( {{ toNEXT(currentAccount.balance) }} NEXT )</span>-->
                     </div>
                 </div>
 
@@ -43,10 +43,10 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import sfcUtils from 'fantom-ledgerjs/src/sfc-utils.js';
+import sfcUtils from 'next-ledgerjs/src/sfc-utils.js';
 import TxConfirmation from '@/components/TxConfirmation/TxConfirmation.vue';
 import LedgerConfirmationContent from '@/components/LedgerConfirmationContent/LedgerConfirmationContent.vue';
-import { toFTM } from '@/utils/transactions.js';
+import { toNEXT } from '@/utils/transactions.js';
 import { formatDate, timestampToDate } from '@/filters.js';
 import { toBigNumber, toHex } from '@/utils/big-number.js';
 
@@ -191,7 +191,7 @@ export default {
             });
         },
 
-        toFTM,
+        toNEXT,
     },
 };
 </script>

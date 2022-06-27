@@ -75,7 +75,7 @@ export default {
     },
 
     created() {
-        this.$store.commit(SET_SEND_DIRECTION, 'OperaToOpera');
+        this.$store.commit(SET_SEND_DIRECTION, 'NEXTToNEXT');
 
         // temporary data
         this._data_ = null;

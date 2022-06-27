@@ -4,7 +4,7 @@
 
         <div v-if="!accounts.length" class="narrow-container">
             <router-link to="/" class="btn large w100p" target="_blank">
-                Start using Fantom PWA Wallet
+                Start using Next PWA Wallet
             </router-link>
         </div>
     </div>

@@ -3,7 +3,7 @@ import appConfig from '../../../app.config.js';
 import WC from '@walletconnect/client';
 import { store } from '@/store';
 import { SET_WALLETCONNECT_ACCOUNT, SET_WALLETCONNECT_CHAIN_ID } from '@/plugins/walletconnect/store.js';
-const OPERA_CHAIN_ID = appConfig.chainId;
+const NEXT_CHAIN_ID = appConfig.chainId;
 import WalletConnectQRCodeModal from '@walletconnect/qrcode-modal';
 
 /** @type {WalletConnect} */
@@ -123,7 +123,7 @@ export class WalletConnect {
      * @return {boolean}
      */
     isCorrectChainId(chainId) {
-        return this.chainId === (chainId || parseInt(OPERA_CHAIN_ID, 16));
+        return this.chainId === (chainId || parseInt(NEXT_CHAIN_ID, 16));
     }
 
     /**

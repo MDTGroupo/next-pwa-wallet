@@ -123,14 +123,14 @@ export class BNBridgeExchange {
     }
 
     /**
-     * Get fantom token from tokens list.
+     * Get next token from tokens list.
      *
      * @return {BNBridgeToken|undefined}
      */
-    async getFantomToken() {
+    async getNextToken() {
         const tokens = await this.getTokens();
 
-        return tokens ? tokens.find((_token) => _token.symbol === 'FTM') : undefined;
+        return tokens ? tokens.find((_token) => _token.symbol === 'NEXT') : undefined;
     }
 
     /**
@@ -139,7 +139,7 @@ export class BNBridgeExchange {
      * @return {Promise<number>}
      */
     async getETHBalance(_ethReceiveAddress, _token) {
-        const token = /** @type {BNBridgeToken} */ _token || (await this.getFantomToken());
+        const token = /** @type {BNBridgeToken} */ _token || (await this.getNextToken());
         const pData = {
             eth_address: _ethReceiveAddress,
             token_uuid: token ? token.uuid : '',
@@ -182,7 +182,7 @@ export class BNBridgeExchange {
      * @return {Promise<BNBBalances>}
      */
     async getBNBBalances(_bnbReceiveAddress, _token) {
-        const token = /** @type {BNBridgeToken} */ _token || (await this.getFantomToken());
+        const token = /** @type {BNBridgeToken} */ _token || (await this.getNextToken());
         const pData = {
             bnb_address: _bnbReceiveAddress,
             token_uuid: token ? token.uuid : '',
@@ -225,19 +225,19 @@ export class BNBridgeExchange {
     /**
      * @param {string} [ethAddress]
      * @param {string} [bnbAddress]
-     * @param {string} [operaAddress]
+     * @param {string} [nextAddress]
      * @param {BNBridgeDirection} [direction]
      * @param {BNBridgeToken} [_token]
      * @return {Promise<null>}
      */
-    async swapToken({ ethAddress = '', bnbAddress = '', operaAddress = '', direction = 'EthereumToBinance' }, _token) {
-        const token = /** @type {BNBridgeToken} */ _token || (await this.getFantomToken());
+    async swapToken({ ethAddress = '', bnbAddress = '', nextAddress = '', direction = 'EthereumToBinance' }, _token) {
+        const token = /** @type {BNBridgeToken} */ _token || (await this.getNextToken());
         const pData = {
             direction,
             token_uuid: token ? token.uuid : '',
             eth_address: ethAddress,
             bnb_address: bnbAddress,
-            opera_address: operaAddress,
+            next_address: nextAddress,
         };
         let dataOk = !!pData.token_uuid;
         let result = null;
@@ -276,10 +276,10 @@ export class BNBridgeExchange {
 
                     if (
                         errorMessage === 'Symbol already exists' &&
-                        pData.opera_address !== pData.opera_address.toLowerCase()
+                        pData.next_address !== pData.next_address.toLowerCase()
                     ) {
-                        // resend request with Opera address in lowercase
-                        pData.opera_address = pData.opera_address.toLowerCase();
+                        // resend request with NEXT address in lowercase
+                        pData.next_address = pData.next_address.toLowerCase();
                         data = await this.fetch({ slug: 'swaps', data: pData });
 
                         if (data.success) {
@@ -306,7 +306,7 @@ export class BNBridgeExchange {
      * @return {Promise<null>}
      */
     async finalizeSwapToken({ uuid = '', direction = '', memo = '' }, _token) {
-        const token = /** @type {BNBridgeToken} */ _token || (await this.getFantomToken());
+        const token = /** @type {BNBridgeToken} */ _token || (await this.getNextToken());
         const pData = {
             direction,
             token_uuid: token ? token.uuid : '',
@@ -589,11 +589,11 @@ export class BNBridgeExchange {
      * @param {BNBridgeDirection} _direction
      * @return {string}
      */
-    getFTMCurrencyByDirection(_direction) {
-        let currency = 'FTM';
+    getNEXTCurrencyByDirection(_direction) {
+        let currency = 'NEXT';
 
-        if (_direction === 'OperaToOpera') {
-            currency += '-Opera';
+        if (_direction === 'NEXTToNEXT') {
+            currency += '-NEXT';
         } else if (_direction.indexOf('Binance') > -1) {
             currency += '-BEP2';
         } else if (_direction.indexOf('Ethereum') > -1) {
@@ -608,7 +608,7 @@ export class BNBridgeExchange {
      * @return {string}
      */
     getAddressKeyByDirection(_direction) {
-        let blockchain = 'opera';
+        let blockchain = 'next';
 
         if (_direction.indexOf('Binance') > -1) {
             blockchain = 'bnb';

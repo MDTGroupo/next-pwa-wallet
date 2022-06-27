@@ -66,7 +66,7 @@
                                             <f-placeholder :content-loaded="!!item.amount" :replacement-num-chars="10">
                                                 {{ item.amount }}
                                             </f-placeholder>
-                                            FTM delegated to
+                                            NEXT delegated to
                                             {{ item.validator.stakerInfo.name }} ({{ parseInt(item.validator.id, 16) }})
                                             <span v-if="item.validator.stakerInfo._unknown" class="perex">
                                                 {{ item.validator.stakerAddress }}
@@ -225,7 +225,7 @@ import FInfo from '@/components/core/FInfo/FInfo.vue';
 import { GOV_PERCENTAGE_FRAC_DIGITS } from '@/plugins/governance/governance.js';
 import appConfig from '../../../app.config.js';
 import { fFetch } from '@/plugins/ffetch.js';
-import { WEIToFTM } from '@/utils/transactions.js';
+import { WEIToNEXT } from '@/utils/transactions.js';
 import FPlaceholder from '@/components/core/FPlaceholder/FPlaceholder.vue';
 import { focusElem } from '@/utils/aria.js';
 import TxConfirmationWindow from '@/components/windows/TxConfirmationWindow/TxConfirmationWindow.vue';
@@ -439,7 +439,7 @@ export default {
             for (let i = 0, len1 = items.length; i < len1; i++) {
                 if (items[i].validator) {
                     const delegation = await this.fetchDelegation(items[i].validator.id);
-                    items[i].amount = this.formatNumberByLocale(this.WEIToFTM(delegation.amount));
+                    items[i].amount = this.formatNumberByLocale(this.WEIToNEXT(delegation.amount));
                 }
             }
         },
@@ -570,7 +570,7 @@ export default {
                             stake
                             totalStake
                             delegatedMe
-                            stakerInfo {
+                            validatorInfo {
                                 name
                                 website
                                 contact
@@ -743,7 +743,7 @@ export default {
         timestampToDate,
         formatDate,
         formatNumberByLocale,
-        WEIToFTM,
+        WEIToNEXT,
     },
 };
 </script>

@@ -614,8 +614,8 @@ export default {
 
         updateMessage() {
             /*
-            if (this.availableFTM <= 0.01) {
-                this.message = 'Deposit more FTM to increase your collateral';
+            if (this.availableNEXT <= 0.01) {
+                this.message = 'Deposit more NEXT to increase your collateral';
             } else {
                 this.message = '';
             }

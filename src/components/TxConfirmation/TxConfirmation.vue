@@ -48,7 +48,7 @@
             animation-out="scale-center-leave-active"
         >
             <!--                <icon data="@/assets/svg/nano-s-confirm-tx.svg" width="300" height="91" />-->
-            <div class="align-center"><img src="img/nano-s-confirm-tx.png" alt="fantom nano device" /><br /><br /></div>
+            <div class="align-center"><img src="img/nano-s-confirm-tx.png" alt="next nano device" /><br /><br /></div>
 
             <p class="align-center">Please confirm this transaction on your Ledger device:</p>
 
@@ -70,7 +70,7 @@
                     Metamask is not installed.
                 </div>
                 <div v-else-if="!$mm.isCorrectChainId()">
-                    Please, select Opera chain in Metamask.
+                    Please, select NEXT chain in Metamask.
                 </div>
                 <div v-else-if="mmAccount.toLowerCase() !== currentAccount.address.toLowerCase()">
                     Please, select account <b>{{ currentAccount.address }}</b> in Metamask.
@@ -90,7 +90,7 @@
         >
             <div class="align-center">
                 <div v-if="!$walletConnect.isCorrectChainId()">
-                    Please, select Fantom Opera chain.
+                    Please, select Next Smart Chain chain.
                 </div>
                 <div v-else-if="walletConnectAccount.toLowerCase() !== currentAccount.address.toLowerCase()">
                     Please, select account <b>{{ currentAccount.address }}</b>
@@ -109,7 +109,7 @@ import LedgerMessage from '../LedgerMessage/LedgerMessage.vue';
 import TransactionConfirmationForm from '../forms/TransactionConfirmationForm.vue';
 import { mapGetters, mapState } from 'vuex';
 import gql from 'graphql-tag';
-import { U2FStatus } from '../../plugins/fantom-nano.js';
+import { U2FStatus } from '../../plugins/next-nano.js';
 import { UPDATE_ACCOUNT_BALANCE } from '../../store/actions.type.js';
 import appConfig from '../../../app.config.js';
 import CoinbaseWalletNoticeWindow from '@/components/windows/CoinbaseWalletNoticeWindow/CoinbaseWalletNoticeWindow.vue';
@@ -319,7 +319,7 @@ export default {
                 if (data.gasLimit && data.gasPrice) {
                     this.$store.commit(
                         SET_TX_FEE,
-                        fWallet.WEIToFTM(fWallet.getTransactionFee(data.gasPrice, data.gasLimit))
+                        fWallet.WEIToNEXT(fWallet.getTransactionFee(data.gasPrice, data.gasLimit))
                     );
                 } else {
                     this.$store.commit(SET_TX_FEE, this.tx._fee);

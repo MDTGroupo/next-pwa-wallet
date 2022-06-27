@@ -6,7 +6,7 @@
 
 <script>
 import FMessage from '../core/FMessage/FMessage.vue';
-import { U2FStatus } from '../../plugins/fantom-nano.js';
+import { U2FStatus } from '../../plugins/next-nano.js';
 
 /**
  * Displayes ledger device status messages by given error object.

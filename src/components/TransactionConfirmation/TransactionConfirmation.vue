@@ -14,7 +14,7 @@
         >
             <h2 class="not-visible" data-focus>
                 <span v-if="token.address"> Send {{ tokenSymbol }} </span>
-                <span v-else>Send Opera FTM</span>
+                <span v-else>Send NEXT</span>
             </h2>
 
             <div class="transaction-info">
@@ -31,7 +31,7 @@
                             <template v-if="token.address">
                                 <f-token-value :value="sendToAddressBalance" :token="token" />
                             </template>
-                            <template v-else-if="sendToAddressBalance"> {{ sendToAddressBalance }} FTM </template>
+                            <template v-else-if="sendToAddressBalance"> {{ sendToAddressBalance }} NEXT </template>
                             <template v-if="sendToAccountName">, {{ sendToAccountName }} </template> )
                         </span>
                     </div>
@@ -46,7 +46,7 @@
                                 ( <f-token-value :value="maxRemainingErc20TokenBalance" :token="token" />
                             </template>
                             <template v-else>
-                                ( <f-t-m-token-value :value="currentAccount.balance" convert />
+                                ( <n-e-x-t-token-value :value="currentAccount.balance" convert />
                             </template>
                             <template v-if="currentAccount.name">, {{ currentAccount.name }}</template> )
                         </span>
@@ -63,13 +63,13 @@
                     <div class="col">{{ txData.memo }}</div>
                 </div>
 
-                <template v-if="sendDirection !== 'OperaToOpera'">
+                <template v-if="sendDirection !== 'NEXTToNEXT'">
                     <f-message type="warning" class="align-center">
-                        All bridge transactions incur a fee of {{ minFTMToTransfer }} FTM, deducted from the transfer
+                        All bridge transactions incur a fee of {{ minNEXTToTransfer }} NEXT, deducted from the transfer
                         amount.
                     </f-message>
                     <f-message type="info" class="big">
-                        You will receive <b>{{ txData.amount - minFTMToTransfer }} FTM</b>
+                        You will receive <b>{{ txData.amount - minNEXTToTransfer }} NEXT</b>
                     </f-message>
                     <br />
                 </template>
@@ -88,10 +88,10 @@
                         <div class="row no-collapse">
                             <div class="col-3 f-row-label">Send To</div>
                             <div class="col break-word">
-                                {{ txData.opera_address }}
+                                {{ txData.next_address }}
                                 <span v-show="sendToAddressBalance" class="f-row-label">
                                     <template v-if="sendToAddressBalance">
-                                        ( {{ toFTM(sendToAddressBalance.balance) }} FTM )
+                                        ( {{ toNEXT(sendToAddressBalance.balance) }} NEXT )
                                     </template>
                                 </span>
                             </div>
@@ -104,7 +104,7 @@
                                 {{ currentAccount.address }}
                                 <span class="f-row-label">
                                     <template v-if="currentAccount.name"><br /></template>
-                                    ( {{ toFTM(currentAccount.balance) }} FTM
+                                    ( {{ toNEXT(currentAccount.balance) }} NEXT
                                     <template v-if="currentAccount.name">, {{ currentAccount.name }}</template> )
                                 </span>
                             </div>
@@ -123,11 +123,11 @@
                         </div>
                     </li>
                 </ol>
-                <f-message v-if="sendDirection === 'OperaToEthereum'" type="warning" class="align-center">
-                    All bridge transactions incur a fee of {{ minFTMToTransfer }} FTM, deducted from the transfer
+                <f-message v-if="sendDirection === 'NEXTToEthereum'" type="warning" class="align-center">
+                    All bridge transactions incur a fee of {{ minNEXTToTransfer }} NEXT, deducted from the transfer
                     amount.
                     <br />
-                    You will receive {{ txData.amount - minFTMToTransfer }} FTM
+                    You will receive {{ txData.amount - minNEXTToTransfer }} NEXT
                     <br />
                 </f-message>
             </template>
@@ -138,18 +138,18 @@
 <script>
 import { mapGetters } from 'vuex';
 import { focusElem } from '../../utils/aria.js';
-import { Web3 } from '../../plugins/fantom-web3-wallet.js';
-import { toFTM } from '../../utils/transactions.js';
+import { Web3 } from '../../plugins/next-web3-wallet.js';
+import { toNEXT } from '../../utils/transactions.js';
 import { formatNumberByLocale } from '../../filters.js';
 import TxConfirmation from '../TxConfirmation/TxConfirmation.vue';
-import erc20Utils from 'fantom-ledgerjs/src/erc20-utils.js';
+import erc20Utils from 'next-ledgerjs/src/erc20-utils.js';
 import FTokenValue from '@/components/core/FTokenValue/FTokenValue.vue';
 import FMessage from '@/components/core/FMessage/FMessage.vue';
 import appConfig from '../../../app.config.js';
-import FTMTokenValue from '@/components/core/FTMTokenValue/FTMTokenValue.vue';
+import NEXTTokenValue from '@/components/core/NEXTTokenValue/NEXTTokenValue.vue';
 
 export default {
-    components: { FTMTokenValue, FMessage, FTokenValue, TxConfirmation },
+    components: { NEXTTokenValue, FMessage, FTokenValue, TxConfirmation },
 
     props: {
         // transaction data from SendTransactionForm
@@ -177,7 +177,7 @@ export default {
             sendToAddress: '',
             dTxData: this.txData,
             tx: {},
-            minFTMToTransfer: appConfig.bnbridgeApi.minFTMToTransfer,
+            minNEXTToTransfer: appConfig.bnbridgeApi.minNEXTToTransfer,
         };
     },
 
@@ -190,7 +190,7 @@ export default {
         tokenSymbol() {
             const { token } = this;
 
-            return token.address ? this.$defi.getTokenSymbol(token) : 'FTM';
+            return token.address ? this.$defi.getTokenSymbol(token) : 'NEXT';
         },
 
         /**
@@ -221,13 +221,13 @@ export default {
                 if (data) {
                     balance = this.$defi.fromTokenValue(data, this.token);
                 }
-            } else if (sendDirection === 'OperaToOpera') {
-                data = await this.$fWallet.getBalance(this.txData.opera_address);
-                balance = this.toFTM(data.balance);
-            } else if (sendDirection === 'OperaToBinance') {
+            } else if (sendDirection === 'NEXTToNEXT') {
+                data = await this.$fWallet.getBalance(this.txData.next_address);
+                balance = this.toNEXT(data.balance);
+            } else if (sendDirection === 'NEXTToBinance') {
                 data = await this.$bnb.getBNBBalances(this.txData.bnb_address);
                 balance = `BNB address: ${this.txData.bnb_address}, ${formatNumberByLocale(data.balance)}`;
-            } else if (sendDirection === 'OperaToEthereum') {
+            } else if (sendDirection === 'NEXTToEthereum') {
                 data = await this.$bnb.getETHBalance(this.txData.eth_address);
                 balance = `ETH address: ${this.txData.eth_address}, ${formatNumberByLocale(data)}`;
             }
@@ -255,14 +255,14 @@ export default {
             let data;
             let stData = null;
 
-            if (sendDirection === 'OperaToOpera') {
-                this.sendToAddress = this.txData.opera_address;
-            } else if (sendDirection === 'OperaToBinance') {
+            if (sendDirection === 'NEXTToNEXT') {
+                this.sendToAddress = this.txData.next_address;
+            } else if (sendDirection === 'NEXTToBinance') {
                 stData = {
                     direction: sendDirection,
                     bnbAddress: this.txData.bnb_address,
                 };
-            } else if (sendDirection === 'OperaToEthereum') {
+            } else if (sendDirection === 'NEXTToEthereum') {
                 stData = {
                     direction: sendDirection,
                     ethAddress: this.txData.eth_address,
@@ -277,8 +277,8 @@ export default {
                     ...this.txData,
                     ...data,
                 };
-                this.sendToAddress = data.opera_address;
-                this.dTxData.opera_address = data.opera_address;
+                this.sendToAddress = data.next_address;
+                this.dTxData.next_address = data.next_address;
 
                 // console.log('_swapTokenData', this._swapTokenData);
             }
@@ -292,7 +292,7 @@ export default {
             const fWallet = this.$fWallet;
             const { token } = this;
 
-            if (!dTxData.opera_address) {
+            if (!dTxData.next_address) {
                 return;
             }
 
@@ -300,7 +300,7 @@ export default {
                 this.tx = await fWallet.getDefiTransactionToSign(
                     erc20Utils.erc20TransferTx(
                         token.address,
-                        fWallet.toChecksumAddress(dTxData.opera_address),
+                        fWallet.toChecksumAddress(dTxData.next_address),
                         parseFloat(dTxData.amount) >= this.maxRemainingErc20TokenBalance
                             ? token.balanceOf || token.availableBalance
                             : Web3.utils.toHex(this.$defi.toTokenValue(dTxData.amount, token))
@@ -311,7 +311,7 @@ export default {
                 this.tx = await fWallet.getTransactionToSign({
                     value: Web3.utils.toHex(Web3.utils.toWei(dTxData.amount)),
                     from,
-                    to: fWallet.toChecksumAddress(dTxData.opera_address),
+                    to: fWallet.toChecksumAddress(dTxData.next_address),
                     memo: dTxData.memo,
                 });
             }
@@ -344,7 +344,7 @@ export default {
             }
         },
 
-        toFTM,
+        toNEXT,
     },
 };
 </script>

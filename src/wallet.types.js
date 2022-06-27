@@ -1,6 +1,6 @@
 /**
  * Wallet's blockchain type.
- * @typedef {('fantom' | 'ethereum' | 'binance')} WalletBlockchain
+ * @typedef {('next' | 'ethereum' | 'binance')} WalletBlockchain
  */
 
 /**

@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import ftmIcon from '../../../assets/svg/tokens/FTM.svg';
-import wftmIcon from '../../../assets/svg/tokens/wFTM.svg';
+import ftmIcon from '../../../assets/svg/tokens/NEXT.svg';
+import wnextIcon from '../../../assets/svg/tokens/wNEXT.svg';
 import fusdIcon from '../../../assets/svg/tokens/fUSD.svg';
 
 /**
@@ -61,10 +61,10 @@ export default {
 
             if (token) {
                 switch (token.symbol) {
-                    case 'FTM':
+                    case 'NEXT':
                         return ftmIcon;
-                    case 'WFTM':
-                        return wftmIcon;
+                    case 'WNEXT':
+                        return wnextIcon;
                     case 'FUSD':
                         return fusdIcon;
                 }

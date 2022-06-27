@@ -63,7 +63,7 @@
             </div>
 
             <template #window-content>
-                <ledger-confirmation-content :to="tx.to" :amount="amountFTM" :max-fee="tx._fee" />
+                <ledger-confirmation-content :to="tx.to" :amount="amountNEXT" :max-fee="tx._fee" />
             </template>
         </tx-confirmation>
         <template v-else>
@@ -75,14 +75,14 @@
 <script>
 import TxConfirmation from '../../components/TxConfirmation/TxConfirmation.vue';
 import LedgerConfirmationContent from '../../components/LedgerConfirmationContent/LedgerConfirmationContent.vue';
-import { Web3 } from '../../plugins/fantom-web3-wallet.js';
+import { Web3 } from '../../plugins/next-web3-wallet.js';
 import { mapGetters } from 'vuex';
-import { toFTM } from '../../utils/transactions.js';
+import { toNEXT } from '../../utils/transactions.js';
 import FBackButton from '../../components/core/FBackButton/FBackButton.vue';
 import { getAppParentNode } from '../../app-structure.js';
 import FMessage from '../../components/core/FMessage/FMessage.vue';
-import wftmUtils from 'fantom-ledgerjs/src/wftm-utils.js';
-import erc20Utils from 'fantom-ledgerjs/src/erc20-utils.js';
+import wnextUtils from 'next-ledgerjs/src/wnext-utils.js';
+import erc20Utils from 'next-ledgerjs/src/erc20-utils.js';
 import appConfig from '../../../app.config.js';
 import FTokenValue from '@/components/core/FTokenValue/FTokenValue.vue';
 import { getUniqueId } from '@/utils';
@@ -119,7 +119,7 @@ export default {
             compName: 'defi-ftrade',
             priceDecimals: 6,
             tx: {},
-            amountFTM: 0,
+            amountNEXT: 0,
             tmpPwdCode: '',
         };
     },
@@ -246,19 +246,19 @@ export default {
                     Web3.utils.toHex(this.$defi.shiftDecPointRight((fromValue * 1.05).toString(), fromToken.decimals))
                 );
             } else {
-                if (fromToken.symbol === 'FTM' && toToken.canWrapFTM) {
-                    this.amountFTM = params.fromValue.toFixed(this.$defi.getTokenDecimals(params.fromToken));
+                if (fromToken.symbol === 'NEXT' && toToken.canWrapNEXT) {
+                    this.amountNEXT = params.fromValue.toFixed(this.$defi.getTokenDecimals(params.fromToken));
 
-                    txToSign = wftmUtils.defiWrapFtm(
+                    txToSign = wnextUtils.defiWrapNEXT(
                         toToken.address,
                         Web3.utils.toHex(this.$defi.shiftDecPointRight(params.toValue.toString(), toToken.decimals))
                     );
-                } else if (fromToken.canWrapFTM && toToken.symbol === 'FTM') {
+                } else if (fromToken.canWrapNEXT && toToken.symbol === 'NEXT') {
                     const amount = Web3.utils.toHex(
                         this.$defi.shiftDecPointRight(params.fromValue.toString(), toToken.decimals)
                     );
 
-                    txToSign = wftmUtils.defiUnwrapFtm(
+                    txToSign = wnextUtils.defiUnwrapNEXT(
                         fromToken.address,
                         params.max || this.$defi.compareBN(amount, fromToken.availableBalance) === 1
                             ? fromToken.availableBalance
@@ -369,7 +369,7 @@ export default {
             }
         },
 
-        toFTM,
+        toNEXT,
     },
 };
 </script>

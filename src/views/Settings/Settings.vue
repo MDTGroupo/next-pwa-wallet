@@ -3,10 +3,10 @@
         <main class="main">
             <h1>Settings</h1>
 
-            <h2>fWallet</h2>
+            <h2>Wallet</h2>
             <settings-form />
 
-            <h2>fUNI</h2>
+            <h2>UNI</h2>
             <f-uniswap-settings />
 
             <h2>Metamask</h2>

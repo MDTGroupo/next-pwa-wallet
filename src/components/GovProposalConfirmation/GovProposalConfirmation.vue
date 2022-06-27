@@ -25,7 +25,7 @@
                         <f-placeholder :content-loaded="!!amountDelegated" :replacement-num-chars="10">
                             {{ amountDelegated }}
                         </f-placeholder>
-                        FTM delegated to {{ d_validator.stakerInfo.name }} ({{ parseInt(d_validator.id, 16) }})
+                        NEXT delegated to {{ d_validator.stakerInfo.name }} ({{ parseInt(d_validator.id, 16) }})
                         <span v-if="d_validator.stakerInfo._unknown" class="perex">
                             {{ d_validator.stakerAddress }}
                         </span>
@@ -65,13 +65,13 @@ import FMessage from '@/components/core/FMessage/FMessage.vue';
 import { mapGetters } from 'vuex';
 import { viewHelpersMixin } from '@/mixins/view-helpers.js';
 import { toKebabCase } from '@/utils';
-import governanceUtils from 'fantom-ledgerjs/src/governance-utils.js';
+import governanceUtils from 'next-ledgerjs/src/governance-utils.js';
 import Web3 from 'web3';
 import FPlaceholder from '@/components/core/FPlaceholder/FPlaceholder.vue';
 import { fFetch } from '@/plugins/ffetch.js';
 import gql from 'graphql-tag';
 import { formatNumberByLocale } from '@/filters.js';
-import { WEIToFTM } from '@/utils/transactions.js';
+import { WEIToNEXT } from '@/utils/transactions.js';
 
 export default {
     name: 'GovProposalConfirmation',
@@ -184,7 +184,7 @@ export default {
         } else if (this.d_validator.id) {
             this.fetchDelegation(this.d_validator.id).then((_delegation) => {
                 if (_delegation && _delegation.amount) {
-                    this.amountDelegated = this.formatNumberByLocale(this.WEIToFTM(_delegation.amount));
+                    this.amountDelegated = this.formatNumberByLocale(this.WEIToNEXT(_delegation.amount));
                 }
             });
         }
@@ -304,7 +304,7 @@ export default {
         },
 
         formatNumberByLocale,
-        WEIToFTM,
+        WEIToNEXT,
     },
 };
 </script>

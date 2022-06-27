@@ -1,5 +1,5 @@
 <template>
-    <div ref="doc" class="stake-ftm" tabindex="0">
+    <div ref="doc" class="stake-next" tabindex="0">
         <h1 :id="infoId" class="with-back-btn align-center" aria-label="Delegation" data-focus>
             <span>Delegation</span>
             <f-back-button ref="backButton" :route-name="getBackButtonRoute('staking-info')" />
@@ -14,7 +14,7 @@
                         <div class="col">
                             <f-placeholder :content-loaded="!!accountInfo" block :replacement-num-chars="10">
                                 <template v-if="accountInfo">
-                                    <f-t-m-token-value :value="accountInfo.amountDelegated" convert />
+                                    <n-e-x-t-token-value :value="accountInfo.amountDelegated" convert />
                                 </template>
                             </f-placeholder>
                         </div>
@@ -24,7 +24,7 @@
                         <div class="col">
                             <f-placeholder :content-loaded="!!accountInfo" block :replacement-num-chars="10">
                                 <template v-if="accountInfo">
-                                    <f-t-m-token-value :value="accountInfo.pendingRewards" convert />
+                                    <n-e-x-t-token-value :value="accountInfo.pendingRewards" convert />
                                 </template>
                             </f-placeholder>
                         </div>
@@ -35,18 +35,18 @@
                             <f-placeholder :content-loaded="!!accountInfo" block :replacement-num-chars="10">
                                 <template v-if="accountInfo">
                                     -
-                                    <!--{{ toFTM(accountInfo.claimedRewards) }} FTM-->
+                                    <!--{{ toNEXT(accountInfo.claimedRewards) }} NEXT-->
                                 </template>
                             </f-placeholder>
                         </div>
                     </div>
                     <div class="row no-collapse">
-                        <div class="col f-row-label">Minted sFTM</div>
+                        <div class="col f-row-label">Minted sNEXT</div>
                         <div class="col">
                             <f-placeholder :content-loaded="!!accountInfo" block :replacement-num-chars="10">
                                 <template v-if="accountInfo">
-                                    <f-t-m-token-value :value="outstandingSFTM" convert no-currency />
-                                    sFTM
+                                    <n-e-x-t-token-value :value="outstandingSNEXT" convert no-currency />
+                                    sNEXT
                                 </template>
                             </f-placeholder>
                         </div>
@@ -56,7 +56,7 @@
                         <div class="col">
                             <f-placeholder :content-loaded="!!accountInfo" block :replacement-num-chars="10">
                                 <template v-if="accountInfo">
-                                    <f-t-m-token-value :value="accountInfo.pendingWithdraw" convert />
+                                    <n-e-x-t-token-value :value="accountInfo.pendingWithdraw" convert />
                                 </template>
                             </f-placeholder>
                         </div>
@@ -110,7 +110,7 @@
                                     <f-message
                                         v-if="lockedUntil !== '0x0'"
                                         :type="lockedUntilMessageType"
-                                        style="margin-top: 0; padding-top: 0;"
+                                        style="margin-top: 0; padding-top: 0"
                                     >
                                         {{ formatDate(timestampToDate(lockedUntil), false, true) }}
                                     </f-message>
@@ -133,7 +133,7 @@
                                 </f-message>
                                 <!--
                                 <h3 class="align-center">
-                                    Your {{ toFTM(accountInfo.delegated) }} Opera FTM is available for withdraw in 7 days.
+                                    Your {{ toNEXT(accountInfo.delegated) }} NEXT is available for withdraw in 7 days.
                                 </h3>
                                 -->
                             </template>
@@ -190,20 +190,20 @@
                                     Extend Delegation Lock
                                 </button>-->
                                 <button
-                                    v-show="canMintSFTM"
+                                    v-show="canMintSNEXT"
                                     class="btn large"
-                                    :disabled="!canMintSFTM"
-                                    @click="mintSFTM()"
+                                    :disabled="!canMintSNEXT"
+                                    @click="mintSNEXT()"
                                 >
-                                    Mint sFTM
+                                    Mint sNEXT
                                 </button>
                                 <button
-                                    v-show="canRepaySFTM"
+                                    v-show="canRepaySNEXT"
                                     class="btn large"
-                                    :disabled="!canRepaySFTM"
-                                    @click="repaySFTM()"
+                                    :disabled="!canRepaySNEXT"
+                                    @click="repaySNEXT()"
                                 >
-                                    Repay sFTM
+                                    Repay sNEXT
                                 </button>
 
                                 <f-message
@@ -219,19 +219,19 @@
                                     You can claim rewards for a maximum of {{ claimMaxEpochs }} epochs at once (use
                                     repeatedly if needed).-->
                                 </f-message>
-                                <f-message v-if="showRepaySFTMMessage" type="info" with-icon class="align-start">
-                                    Can't repay sFTM, not enough unlocked sFTM
+                                <f-message v-if="showRepaySNEXTMessage" type="info" with-icon class="align-start">
+                                    Can't repay sNEXT, not enough unlocked sNEXT
                                 </f-message>
                                 <f-message v-if="showUndelegateMessage" type="info" with-icon class="align-start">
-                                    Can't undelegate, repay sFTM first please
+                                    Can't undelegate, repay sNEXT first please
                                 </f-message>
                             </template>
                         </template>
-                        <!--                        <template v-else>
+                        <template v-else>
                             <button v-show="accountInfo" class="btn large" :disabled="!accountInfo" @click="stake()">
                                 Delegate
                             </button>
-                        </template>-->
+                        </template>
 
                         <f-message v-if="!!accountInfo && !isFluidStakingActive" type="warning">
                             To participate in Fluid Staking, please claim your outstanding rewards. <br />
@@ -261,17 +261,17 @@
             <h2 :id="undelegationId">Undelegation History</h2>
 
             <f-message
-                v-if="outstandingSFTM > 0"
+                v-if="outstandingSNEXT > 0"
                 type="warning"
                 with-icon
                 class="align-start"
-                style="margin-bottom: 16px;"
+                style="margin-bottom: 16px"
             >
-                Can't withdraw, repay sFTM first please
+                Can't withdraw, repay sNEXT first please
             </f-message>
 
             <withdraw-request-list
-                :disable-withdraw="outstandingSFTM > 0"
+                :disable-withdraw="outstandingSNEXT > 0"
                 :items="withdrawRequests"
                 @withdraw-request-selected="onWithdrawRequestSelected"
             />
@@ -294,16 +294,16 @@
 <script>
 import FCard from '../core/FCard/FCard.vue';
 import { mapGetters } from 'vuex';
-import { toFTM, WeiToFtm } from '../../utils/transactions.js';
+import { toNEXT, WeiToNEXT } from '../../utils/transactions.js';
 import { formatHexToInt, timestampToDate, formatDate } from '../../filters.js';
 import appConfig from '../../../app.config.js';
 import WithdrawRequestList from '../data-tables/WithdrawRequestList.vue';
 import FMessage from '../core/FMessage/FMessage.vue';
 import FPlaceholder from '@/components/core/FPlaceholder/FPlaceholder.vue';
 import gql from 'graphql-tag';
-import { SFC_CLAIM_MAX_EPOCHS } from '@/plugins/fantom-web3-wallet.js';
+import { SFC_CLAIM_MAX_EPOCHS } from '@/plugins/next-web3-wallet.js';
 import dayjs from 'dayjs';
-import FTMTokenValue from '@/components/core/FTMTokenValue/FTMTokenValue.vue';
+import NEXTTokenValue from '@/components/core/NEXTTokenValue/NEXTTokenValue.vue';
 import { getUniqueId } from '@/utils';
 import { viewHelpersMixin } from '@/mixins/view-helpers.js';
 import FBackButton from '@/components/core/FBackButton/FBackButton.vue';
@@ -317,7 +317,7 @@ export default {
     components: {
         TxConfirmationWindow,
         FBackButton,
-        FTMTokenValue,
+        NEXTTokenValue,
         FPlaceholder,
         FMessage,
         WithdrawRequestList,
@@ -366,7 +366,7 @@ export default {
             explorerUrl: appConfig.explorerUrl2,
             claimMaxEpochs: SFC_CLAIM_MAX_EPOCHS,
             /** @type {DefiToken} */
-            sftmToken: {},
+            snextToken: {},
             stepsCount: 1,
             activeStep: 1,
             titles: [],
@@ -492,7 +492,7 @@ export default {
             return this.isValidator || stakerLockedUntil.diff(now.add(lockDuration), 'day') > 0;
         },
 
-        canMintSFTM() {
+        canMintSNEXT() {
             const { delegation } = this.accountInfo;
             let delegationOk = true;
 
@@ -509,12 +509,12 @@ export default {
             );
         },
 
-        canRepaySFTM() {
+        canRepaySNEXT() {
             return (
                 // this.canUndelegate &&
                 this._delegation &&
-                this._delegation.outstandingSFTM !== '0x0' &&
-                this.outstandingSFTM <= this.availableSFTM
+                this._delegation.outstandingSNEXT !== '0x0' &&
+                this.outstandingSNEXT <= this.availableSNEXT
             );
         },
 
@@ -526,21 +526,22 @@ export default {
             return this.currentAccount.address.toLowerCase() === this.stakerInfo.stakerAddress.toLowerCase();
         },
 
-        showRepaySFTMMessage() {
+        showRepaySNEXTMessage() {
             return (
                 this._delegation &&
-                this._delegation.outstandingSFTM !== '0x0' &&
-                this.outstandingSFTM > this.availableSFTM
+                this._delegation.outstandingSNEXT !== '0x0' &&
+                this.outstandingSNEXT > this.availableSNEXT
             );
         },
 
-        availableSFTM() {
-            return this.sftmToken ? this.$defi.fromTokenValue(this.sftmToken.availableBalance, this.sftmToken) || 0 : 0;
+        availableSNEXT() {
+            return 0;
+            //return this.snextToken ? this.$defi.fromTokenValue(this.snextToken.availableBalance, this.snextToken) || 0 : 0;
         },
 
-        outstandingSFTM() {
-            return this.sftmToken && this._delegation
-                ? this.$defi.fromTokenValue(this._delegation.outstandingSFTM, this.sftmToken) || 0
+        outstandingSNEXT() {
+            return this.snextToken && this._delegation
+                ? this.$defi.fromTokenValue(this._delegation.outstandingSNEXT, this.snextToken) || 0
                 : 0;
         },
 
@@ -593,7 +594,7 @@ export default {
             if (delegation && delegation.withdrawRequests && delegation.withdrawRequests.length) {
                 delegation.withdrawRequests.forEach((_request) => {
                     if (delegation.toStakerId === _request.stakerID) {
-                        amount += WeiToFtm(_request.amount);
+                        amount += WeiToNEXT(_request.amount);
                     }
                 });
             }
@@ -709,7 +710,7 @@ export default {
             const { address } = this.currentAccount;
             const result = await Promise.all([$defi.fetchTokens(address), $defi.init()]);
 
-            this.sftmToken = result[0].find((_item) => _item.symbol === 'SFTM') || {};
+            this.snextToken = result[0].find((_item) => _item.symbol === 'SNEXT') || {};
         },
 
         /**
@@ -740,7 +741,7 @@ export default {
                 (accountInfo && accountInfo.delegation && accountInfo.delegation.isDelegationLocked) || false;
 
             this.showConfirmationWindow({
-                compName: 'unstake-f-t-m',
+                compName: 'unstake-n-e-x-t',
                 data: {
                     accountInfo: {
                         ...accountInfo,
@@ -750,14 +751,14 @@ export default {
                     stakerId: this.d_stakerId,
                 },
                 stepsCount: isLocked ? 4 : 3,
-                windowTitle: 'Undelegate FTM',
+                windowTitle: 'Undelegate NEXT',
                 steps: isLocked
                     ? ['Unlock', 'Confirm', 'Undelegate', 'Finished']
                     : ['Undelegate', 'Confirm', 'Finished'],
             });
 
             /*this.$router.push({
-                name: 'staking-unstake-ftm',
+                name: 'staking-unstake-next',
                 params: {
                     accountInfo: {
                         ...accountInfo,
@@ -769,7 +770,7 @@ export default {
             });*/
 
             /*this.$emit('change-component', {
-                to: 'unstake-f-t-m',
+                to: 'unstake-n-e-x-t',
                 from: 'staking-info',
                 data: {
                     accountInfo: {
@@ -814,47 +815,47 @@ export default {
             });
         },
 
-        mintSFTM() {
-            if (!this.canMintSFTM) {
+        mintSNEXT() {
+            if (!this.canMintSNEXT) {
                 return;
             }
 
             // const stakerInfo = await this.stakerInfo;
 
             this.showConfirmationWindow({
-                compName: 'defi-mint-s-f-t-m-confirmation',
+                compName: 'defi-mint-s-n-e-x-t-confirmation',
                 data: {
                     stakerId: this.d_stakerId,
                     amountDelegated: this._delegation.amountDelegated,
                     // stakerAddress: stakerInfo ? stakerInfo.stakerAddress : '',
                 },
-                windowTitle: 'Mint sFTM',
+                windowTitle: 'Mint sNEXT',
             });
         },
 
-        repaySFTM() {
-            if (!this.canRepaySFTM) {
+        repaySNEXT() {
+            if (!this.canRepaySNEXT) {
                 return;
             }
 
             this.showConfirmationWindow({
-                compName: 'defi-repay-s-f-t-m-confirmation',
+                compName: 'defi-repay-s-n-e-x-t-confirmation',
                 data: {
                     stakerId: this.d_stakerId,
-                    outstandingSFTM: this._delegation.outstandingSFTM,
+                    outstandingSNEXT: this._delegation.outstandingSNEXT ? 0 : 0,
                     // stakerAddress: stakerInfo ? stakerInfo.stakerAddress : '',
                 },
                 stepsCount: 2,
                 steps: ['Allow', 'Confirm', 'Finished'],
-                windowTitle: 'Repay sFTM',
+                windowTitle: 'Repay sNEXT',
             });
 
             /*this.$emit('change-component', {
-                to: 'defi-repay-s-f-t-m-confirmation',
+                to: 'defi-repay-s-n-e-x-t-confirmation',
                 from: 'staking-info',
                 data: {
                     stakerId: this.d_stakerId,
-                    outstandingSFTM: this._delegation.outstandingSFTM,
+                    outstandingSNEXT: this._delegation.outstandingSNEXT,
                     // stakerAddress: stakerInfo ? stakerInfo.stakerAddress : '',
                 },
             });*/
@@ -965,8 +966,8 @@ export default {
                             amountInWithdraw
                             unlockedAmount
                             claimedReward
-                            outstandingSFTM
-                            tokenizerAllowedToWithdraw
+                            #outstandingSNEXT
+                            #tokenizerAllowedToWithdraw
                             isFluidStakingActive
                             isDelegationLocked
                             lockDuration
@@ -1003,29 +1004,29 @@ export default {
             const stakerInfo = await this.stakerInfo;
 
             this.showConfirmationWindow({
-                compName: 'withdraw-f-t-m-confirmation',
+                compName: 'withdraw-n-e-x-t-confirmation',
                 data: {
                     accountInfo: {
                         ...accountInfo,
                         stakerInfo,
                     },
-                    amount: WeiToFtm(_withdrawRequest.amount),
+                    amount: WeiToNEXT(_withdrawRequest.amount),
                     withdraw: true,
                     withdrawRequest: _withdrawRequest,
                     stakerId: this.d_stakerId,
                 },
-                windowTitle: 'Withdraw delegated FTM',
+                windowTitle: 'Withdraw delegated NEXT',
             });
 
             /*this.$emit('change-component', {
-                to: 'withdraw-f-t-m-confirmation',
+                to: 'withdraw-n-e-x-t-confirmation',
                 from: 'staking-info',
                 data: {
                     accountInfo: {
                         ...accountInfo,
                         stakerInfo,
                     },
-                    amount: WeiToFtm(_withdrawRequest.amount),
+                    amount: WeiToNEXT(_withdrawRequest.amount),
                     withdraw: true,
                     withdrawRequest: _withdrawRequest,
                     stakerId: this.d_stakerId,
@@ -1050,7 +1051,7 @@ export default {
             this.$refs.backButton.goBack();
         },
 
-        toFTM,
+        toNEXT,
         timestampToDate,
         formatDate,
     },

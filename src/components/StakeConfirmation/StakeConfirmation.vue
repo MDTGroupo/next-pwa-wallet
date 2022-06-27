@@ -3,7 +3,7 @@
         <tx-confirmation
             :tx="tx"
             confirmation-comp-name="stake-confirmation"
-            password-label="Please enter your wallet password to delegate your FTM"
+            password-label="Please enter your wallet password to delegate your NEXT"
             send-button-label="Delegate"
             :on-send-transaction-success="onSendTransactionSuccess"
             card-off
@@ -12,7 +12,7 @@
             class="min-h-100"
             @cancel-button-click="$emit('cancel-button-click', $event)"
         >
-            <h2 class="not-visible" data-focus>Delegate FTM</h2>
+            <h2 class="not-visible" data-focus>Delegate NEXT</h2>
 
             <div class="transaction-info">
                 <div class="row no-collapse">
@@ -25,7 +25,7 @@
                     <div class="col break-word">
                         {{ currentAccount.address }}
                         <span class="f-row-label">
-                            ( {{ toFTM(currentAccount.balance) }} FTM
+                            ( {{ toNEXT(currentAccount.balance) }} NEXT
                             <template v-if="currentAccount.name">, {{ currentAccount.name }}</template> )
                         </span>
                     </div>
@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { toFTM } from '../../utils/transactions.js';
+import { toNEXT } from '../../utils/transactions.js';
 import { mapGetters } from 'vuex';
 import TxConfirmation from '../TxConfirmation/TxConfirmation.vue';
 import LedgerConfirmationContent from '../LedgerConfirmationContent/LedgerConfirmationContent.vue';
@@ -56,7 +56,7 @@ export default {
     components: { LedgerConfirmationContent, TxConfirmation },
 
     props: {
-        /** Data sent from StakeForm component. Info about transaction, validator and amount of FTM. */
+        /** Data sent from StakeForm component. Info about transaction, validator and amount of NEXT. */
         stakeData: {
             type: Object,
             default() {
@@ -125,7 +125,7 @@ export default {
             });
         },
 
-        toFTM,
+        toNEXT,
     },
 };
 </script>

@@ -1,58 +1,43 @@
 //
 const appConfig = {
     // app title
-    name: 'Fantom fWallet',
+    name: 'NEXT Wallet',
     // app description
-    description: 'Fantom fWallet',
+    description: 'NEXT Wallet',
     // app keywords
-    keywords: 'fantom, opera, wallet',
+    keywords: 'next, nextsmartchain, wallet',
     // apollo client settings
     apollo: {
         // list of providers. if one of them is unavailable, another is randomly picked
         providers: [
             {
-                http: 'https://xapi-nodea.fantom.network/',
+                http: 'https://xapi.nextsmartchain.com',
                 // for subscriptions
                 ws: '',
             },
             {
-                http: 'https://xapi-nodeb.fantom.network/',
+                //http: 'https://xapi-a.nextsmartchain.com/',
                 // for subscriptions
-                ws: '',
+                //ws: '',
             },
             {
-                http: 'https://xapi-nodec.fantom.network/',
+                //http: 'https://xapi-b.nextsmartchain.com/',
                 // for subscriptions
-                ws: '',
-            },
-            {
-                http: 'https://xapi-noded.fantom.network/',
-                // for subscriptions
-                ws: '',
-            },
-            {
-                http: 'https://xapi-nodee.fantom.network/',
-                // for subscriptions
-                ws: '',
-            },
-            {
-                http: 'https://xapi-nodef.fantom.network/',
-                // for subscriptions
-                ws: '',
+                //ws: '',
             },
         ],
         // index into providers array of default provider or 'random' - takes index randomly
         defaultProviderIndex: 'random',
     },
-    // Opera chain id
-    chainId: '0xfa',
+    // NEXT chain id
+    chainId: '0x60',
     // JSON-RPC endpoint
-    rpc: 'https://rpcapi.fantom.network/',
-    // used in links pointing to fantom explorer
-    explorerUrl: 'https://ftmscan.com/',
+    rpc: 'https://rpc.nextsmartchain.com/',
+    // used in links pointing to next explorer
+    explorerUrl: 'https://explorer.nextsmartchain.com/',
     // used in links pointing to validators
-    explorerUrl2: 'https://explorer.fantom.network/',
-    // used in links pointing to fantom explorer's transaction detail
+    explorerUrl2: 'https://explorer.nextsmartchain.com/',
+    // used in links pointing to next explorer's transaction detail
     explorerTransactionPath: 'tx',
     // used in links pointing to ethereum explorer
     ethereumExplorerUrl: 'https://etherscan.io/',
@@ -68,8 +53,8 @@ const appConfig = {
         useETH: false,
         // use Binance chain
         useBNB: false,
-        // minimal amount of FTM to ETH transfer
-        minFTMToTransfer: 50,
+        // minimal amount of NEXT to ETH transfer
+        minNEXTToTransfer: 50,
     },
     disableFLend: true,
     //
@@ -79,28 +64,28 @@ const appConfig = {
         // list of providers. if one of them is unavailable, another is randomly picked
         providers: [
             {
-                http: 'https://xapi.testnet.fantom.network/api',
+                http: 'https://testnet-xapi-a.nextsmartchain.com/',
                 // for subscriptions
                 ws: '',
             },
         ],
         // JSON-RPC endpoint
-        rpc: 'https://xapi.testnet.fantom.network/lachesis',
-        // used in links pointing to fantom explorer
-        explorerUrl: 'https://explorer.testnet.fantom.network/',
+        rpc: 'https://testnet-rpc.nextsmartchain.com',
+        // used in links pointing to next explorer
+        explorerUrl: 'https://testnet-explorer.nextsmartchain.com',
         // used in links pointing to validators
-        explorerUrl2: 'https://explorer.testnet.fantom.network/',
-        // used in links pointing to fantom explorer's transaction detail
+        explorerUrl2: 'https://testnet-explorer.nextsmartchain.com',
+        // used in links pointing to next explorer's transaction detail
         explorerTransactionPath: 'transactions',
         // chain id for testnet
-        chainId: '0xfa2',
+        chainId: '0x62',
     },
     // progressive web application
     usePWA: true,
     // pwa settings
     pwa: {
         // name used in pwa manifest
-        name: 'Fantom fWallet',
+        name: 'NEXT Wallet',
         categories: ['finance'],
     },
     // determines if app is chrome extension
@@ -110,9 +95,9 @@ const appConfig = {
         // chrome extension version - increase version number, if you want to publish in the chrome web store
         version: '0.0.1',
         // chrome extension name
-        name: 'Fantom fWallet',
+        name: 'NEXT Wallet',
         // chrome extension description
-        description: 'Fantom fWallet',
+        description: 'NEXT Wallet',
         // output directory for application
         outputDir: 'chrome-extension/dist',
         // output directory for application (relative to outputDir)

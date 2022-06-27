@@ -80,7 +80,7 @@
                         <router-link :to="{ name: 'defi-unlock', params: { tokenAddress: item.address } }">
                             Unlock
                         </router-link>
-                        <template v-if="item.symbol === 'WFTM'">
+                        <template v-if="item.symbol === 'WNEXT'">
                             ,
                             <router-link :to="{ name: 'defi-ftrade' }">Swap</router-link>
                         </template>
@@ -94,7 +94,7 @@
                     <router-link :to="{ name: 'defi-unlock', params: { tokenAddress: item.address } }">
                         Unlock
                     </router-link>
-                    <template v-if="item.symbol === 'WFTM'">
+                    <template v-if="item.symbol === 'WNEXT'">
                         <br />
                         <router-link :to="{ name: 'defi-ftrade' }">Swap</router-link>
                     </template>
@@ -117,7 +117,7 @@ import FCryptoSymbol from '@/components/core/FCryptoSymbol/FCryptoSymbol.vue';
 import { numberSort, stringSort } from '@/utils/array-sorting.js';
 import DepositOrBorrowTokenWindow from '@/components/windows/DepositOrBorrowTokenWindow/DepositOrBorrowTokenWindow.vue';
 import { mapGetters } from 'vuex';
-import { MAX_TOKEN_DECIMALS_IN_TABLES } from '@/plugins/fantom-web3-wallet.js';
+import { MAX_TOKEN_DECIMALS_IN_TABLES } from '@/plugins/next-web3-wallet.js';
 import FTokenValue from '@/components/core/FTokenValue/FTokenValue.vue';
 
 export default {
@@ -167,7 +167,7 @@ export default {
             /** Token used in <deposit-or-borrow-token-window> */
             dbToken: {},
             /** @type {DefiToken} */
-            wftmToken: {},
+            wnextToken: {},
             columns: [
                 {
                     name: 'asset',
@@ -225,7 +225,7 @@ export default {
         async tokens(_value) {
             let tokens = _value.filter((_item) => _item.isActive && _item.canDeposit && this.usedAsCollateral(_item));
 
-            this.wftmToken = _value.find((_item) => _item.symbol === 'WFTM');
+            this.wnextToken = _value.find((_item) => _item.symbol === 'WNEXT');
 
             this.items = tokens.filter((_item) => {
                 const collateral = this.getCollateral(_item);
@@ -291,7 +291,7 @@ export default {
          * @return {boolean}
          */
         usedAsCollateral(_token) {
-            return _token.symbol === 'WFTM' || _token.symbol === 'SFTM';
+            return _token.symbol === 'WNEXT' || _token.symbol === 'SNEXT';
         },
     },
 };

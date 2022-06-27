@@ -9,7 +9,7 @@
                 <li v-for="result in tsData.result" :key="result.uuid">
                     <b>
                         {{ result.amount }}
-                        {{ $bnb.getFTMCurrencyByDirection(receive ? tsData.direction : 'OperaToOpera') }}
+                        {{ $bnb.getNEXTCurrencyByDirection(receive ? tsData.direction : 'NextToNext') }}
                     </b>
                     from
                     <b class="break-word">{{
@@ -22,10 +22,10 @@
                 You will receive another
                 <b>
                     {{ tsData.amount || tsData.result[0].amount }}
-                    {{ $bnb.getFTMCurrencyByDirection(receive ? 'OperaToOpera' : tsData.direction) }}
+                    {{ $bnb.getNEXTCurrencyByDirection(receive ? 'NextToNext' : tsData.direction) }}
                 </b>
                 in your address
-                <b> {{ tsData.address || tsData.result[0].opera_address }}</b>
+                <b> {{ tsData.address || tsData.result[0].next_address }}</b>
             </p>
 
             <!--

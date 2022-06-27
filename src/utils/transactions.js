@@ -1,28 +1,28 @@
 import web3utils from 'web3-utils';
 import { formatNumberByLocale } from '../filters.js';
 
-const WEI_IN_FTM = 1000000000000000000;
+const WEI_IN_NEXT = 1000000000000000000;
 
 /**
  * @return {number}
  */
-export function WEIToFTM(_value) {
-    // console.log(parseFloat(web3utils.fromWei(_value, 'ether')), _value / WEI_IN_FTM);
-    return _value / WEI_IN_FTM;
+export function WEIToNEXT(_value) {
+    // console.log(parseFloat(web3utils.fromWei(_value, 'ether')), _value / WEI_IN_NEXT);
+    return _value / WEI_IN_NEXT;
 }
 
 /**
  * @return {number}
  */
-export function WeiToFtm(_value) {
+export function WeiToNEXT(_value) {
     return parseFloat(web3utils.fromWei(_value, 'ether'));
 }
 
 /**
  * @return {number}
  */
-export function FTMToWEI(_value) {
-    return _value * WEI_IN_FTM;
+export function NEXTToWEI(_value) {
+    return _value * WEI_IN_NEXT;
 }
 
 /**
@@ -30,18 +30,18 @@ export function FTMToWEI(_value) {
  * @param {number} [_tokenPrice]
  * @return {number}
  */
-export function FTMToUSD(_value, _tokenPrice = 0) {
+export function NEXTToUSD(_value, _tokenPrice = 0) {
     return _value * _tokenPrice;
 }
 
 /**
- * Convert value to FTM.
+ * Convert value to NEXT.
  *
  * @param {string|number} _value
  * @return {string}
  */
-export function toFTM(_value) {
-    return formatNumberByLocale(WEIToFTM(_value));
+export function toNEXT(_value) {
+    return formatNumberByLocale(WEIToNEXT(_value));
 }
 
 /**

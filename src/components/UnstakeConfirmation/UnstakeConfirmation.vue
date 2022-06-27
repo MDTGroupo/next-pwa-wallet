@@ -4,7 +4,7 @@
             :tx="tx"
             confirmation-comp-name="unstake-confirmation"
             send-button-label="Undelegate"
-            password-label="Please enter your wallet password to undelegate your FTM"
+            password-label="Please enter your wallet password to undelegate your NEXT"
             :on-send-transaction-success="onSendTransactionSuccess"
             :tmp-pwd-code="tmpPwdCode"
             card-off
@@ -13,7 +13,7 @@
             class="min-h-100"
             @cancel-button-click="$emit('cancel-button-click', $event)"
         >
-            <h2 class="not-visible" data-focus>Undelegate FTM - Confirmation</h2>
+            <h2 class="not-visible" data-focus>Undelegate NEXT - Confirmation</h2>
 
             <div class="transaction-info">
                 <div class="row no-collapse">
@@ -28,7 +28,7 @@
                     <div class="col break-word">
                         {{ currentAccount.address }}
                         <span class="f-row-label">
-                            ( <f-t-m-token-value :value="currentAccount.balance" convert /> )
+                            ( <n-e-x-t-token-value :value="currentAccount.balance" convert /> )
                         </span>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                     <div class="col break-word">{{ dAmount }}</div>
                 </div>
 
-                <f-message v-if="amountDiff > 0" type="warning"> {{ amountDiff }} FTM slashing applied </f-message>
+                <f-message v-if="amountDiff > 0" type="warning"> {{ amountDiff }} NEXT slashing applied </f-message>
             </div>
 
             <template #window-content>
@@ -50,37 +50,37 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import sfcUtils from 'fantom-ledgerjs/src/sfc-utils.js';
+import sfcUtils from 'next-ledgerjs/src/sfc-utils.js';
 import TxConfirmation from '../TxConfirmation/TxConfirmation.vue';
 import { getRandomInt } from '../../utils';
 import LedgerConfirmationContent from '../LedgerConfirmationContent/LedgerConfirmationContent.vue';
 import FMessage from '@/components/core/FMessage/FMessage.vue';
-import FTMTokenValue from '@/components/core/FTMTokenValue/FTMTokenValue.vue';
+import NEXTTokenValue from '@/components/core/NEXTTokenValue/NEXTTokenValue.vue';
 
 export default {
     name: 'UnstakeConfirmation',
 
-    components: { FTMTokenValue, FMessage, LedgerConfirmationContent, TxConfirmation },
+    components: { NEXTTokenValue, FMessage, LedgerConfirmationContent, TxConfirmation },
 
     props: {
-        /** `accountInfo` object from `UnstakeFTM` component. */
+        /** `accountInfo` object from `UnstakeNEXT` component. */
         accountInfo: {
             type: Object,
             default() {
                 return {};
             },
         },
-        /** Amount of FTM tokens to unstake */
+        /** Amount of NEXT tokens to unstake */
         amount: {
             type: Number,
             default: 1,
         },
-        /** Amount of FTM tokens to unlock. (hex number) */
+        /** Amount of NEXT tokens to unlock. (hex number) */
         toUnlockAmount: {
             type: String,
             default: '',
         },
-        /** Unstake maximal amount of FTM tokens */
+        /** Unstake maximal amount of NEXT tokens */
         undelegateMax: {
             type: Boolean,
             default: false,

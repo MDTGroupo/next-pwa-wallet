@@ -15,7 +15,7 @@
                     {{ currentAccount.address }}
                     <span class="f-row-label">
                         <template v-if="currentAccount.name"><br /></template>
-                        ( {{ toFTM(currentAccount.balance) }} FTM
+                        ( {{ toNEXT(currentAccount.balance) }} NEXT
                         <template v-if="currentAccount.name">, {{ currentAccount.name }}</template> )
                     </span>
                 </div>
@@ -23,7 +23,7 @@
         </li>
         <li>
             <div class="row no-collapse">
-                <div class="col-3 f-row-label">Amount (FTM)</div>
+                <div class="col-3 f-row-label">Amount (NEXT)</div>
                 <div class="col">
                     {{ amount }}
                 </div>
@@ -41,7 +41,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import { toFTM } from '../../utils/transactions.js';
+import { toNEXT } from '../../utils/transactions.js';
 
 /**
  * Content for ledger confirmation popups.
@@ -71,7 +71,7 @@ export default {
     },
 
     methods: {
-        toFTM,
+        toNEXT,
     },
 };
 </script>

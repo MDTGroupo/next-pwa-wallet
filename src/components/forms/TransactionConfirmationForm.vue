@@ -26,14 +26,15 @@
                             <f-message type="error" alert with-icon>{{ errorMessage }}</f-message>
                             <br />
                         </div>
-                        <div v-if="notEnoughFTM">
+                        <div v-if="notEnoughNEXT">
                             <f-message type="warning" with-icon class="align-start">
-                                Warning: Not enough available FTM for gas fees. Transfer FTM to your address to proceed.
+                                Warning: Not enough available NEXT for gas fees. Transfer NET to your address to
+                                proceed.
                             </f-message>
                             <br />
                         </div>
 
-                        <p class="max-fee" tabindex="0">Max Fee: {{ dMaxFee }} FTM</p>
+                        <p class="max-fee" tabindex="0">Max Fee: {{ dMaxFee }} NEXT</p>
 
                         <advanced-tx-functions ref="atxfuncs" :gas-info="gasInfo" />
 
@@ -53,7 +54,7 @@
                                 :loading="loading"
                                 :no-label-while-loading="true"
                                 style="max-width: 100%;"
-                                :disabled="notEnoughFTM || disabledSubmit"
+                                :disabled="notEnoughNEXT || disabledSubmit"
                             >
                                 {{ sendButtonLabel }}
                             </FButton>
@@ -170,7 +171,7 @@ export default {
         /**
          * @return {number}
          */
-        notEnoughFTM() {
+        notEnoughNEXT() {
             const { currentAccount } = this;
             let price = 0;
 

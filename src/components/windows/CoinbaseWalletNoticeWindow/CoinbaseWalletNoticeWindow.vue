@@ -9,7 +9,7 @@
         animation-out="scale-center-leave-active"
     >
         <div v-if="!$walletlink.isCorrectChainId(walletlinkChainId)">
-            Please select <b>Fantom Opera</b> network on Coinbase Wallet:
+            Please select <b>Next Smart Chain</b> network on Coinbase Wallet:
             <ol>
                 <li>
                     Tap the
@@ -21,7 +21,7 @@
                     in the mobile app.
                 </li>
                 <li>Tap <b>Active network</b>.</li>
-                <li>Select <b>Fantom Opera</b>.</li>
+                <li>Select <b>Next Smart Chain</b>.</li>
             </ol>
         </div>
         <div v-else-if="$walletlink.selectedAddress.toLowerCase() !== currentAccount.address.toLowerCase()">

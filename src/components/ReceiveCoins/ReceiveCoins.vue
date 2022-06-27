@@ -1,9 +1,9 @@
 <template>
     <div>
-        <h2 class="align-center" data-focus>Receive Opera FTM</h2>
+        <h2 class="align-center" data-focus>Receive NEXT</h2>
 
         <f-card class="receive-coins f-card-double-padding">
-            <h3 :id="labelId" class="align-center">Which blockchain are you receiving FTM from?</h3>
+            <h3 :id="labelId" class="align-center">Which blockchain are you receiving NEXT from?</h3>
 
             <blockchain-picker
                 disable-e-t-h
@@ -24,7 +24,7 @@
 <script>
 import FCard from '../core/FCard/FCard.vue';
 import BlockchainPicker from '../BlockchainPicker/BlockchainPicker.vue';
-import ReceiveFTM from './ReceiveFTM.vue';
+import ReceiveNEXT from './ReceiveNEXT.vue';
 import ReceiveBNB from './ReceiveBNB.vue';
 import ReceiveETH from './ReceiveETH.vue';
 import TransactionCompleting from '../TransactionCompleting/TransactionCompleting.vue';
@@ -32,17 +32,17 @@ import { eventBusMixin } from '../../mixins/event-bus.js';
 import { focusElem } from '@/utils/aria.js';
 import { getUniqueId } from '@/utils';
 
-const DEFAULT_COMPONENT = 'receive-f-t-m';
+const DEFAULT_COMPONENT = 'receive-n-e-x-t';
 
 export default {
     name: 'ReceiveCoins',
 
-    components: { BlockchainPicker, FCard, ReceiveFTM, ReceiveBNB, ReceiveETH, TransactionCompleting },
+    components: { BlockchainPicker, FCard, ReceiveNEXT, ReceiveBNB, ReceiveETH, TransactionCompleting },
 
     mixins: [eventBusMixin],
 
     props: {
-        /** Start verify FTM account in ReceiveFTM component */
+        /** Start verify NEXT account in ReceiveNEXT component */
         verifyAccount: {
             type: Boolean,
             default: false,
@@ -60,7 +60,7 @@ export default {
     computed: {
         currentComponentProperties() {
             switch (this.currentComponent) {
-                case 'receive-f-t-m':
+                case 'receive-n-e-x-t':
                     return {
                         verifyAccount: this.verifyAccount,
                     };
@@ -88,12 +88,12 @@ export default {
 
     methods: {
         /**
-         * @param {('opera'|'binance'|'ethereum')} _blockchain
+         * @param {('next'|'binance'|'ethereum')} _blockchain
          */
         onBlockchainPick(_blockchain) {
             switch (_blockchain) {
-                case 'opera':
-                    this.currentComponent = 'ReceiveFTM';
+                case 'next':
+                    this.currentComponent = 'ReceiveNEXT';
                     break;
                 case 'binance':
                     this.currentComponent = 'ReceiveBNB';

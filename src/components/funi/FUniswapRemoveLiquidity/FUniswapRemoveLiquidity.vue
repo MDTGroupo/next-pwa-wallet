@@ -444,7 +444,7 @@ export default {
         onSubmit() {
             const { fromToken } = this;
             const { toToken } = this;
-            // const ftmTokens = ['FTM', 'WFTM'];
+            // const ftmTokens = ['NEXT', 'WNEXT'];
             const params = {
                 fromToken: { ...fromToken },
                 toToken: { ...toToken },

@@ -6,7 +6,7 @@
         </h1>
 
         <h2 class="perex">
-            Mint fUSD with your locked {{ wftmTokenSymbol }} or repay fUSD to unlock your {{ wftmTokenSymbol }}. You can
+            Mint fUSD with your locked {{ wnextTokenSymbol }} or repay fUSD to unlock your {{ wnextTokenSymbol }}. You can
             use fUSD to trade synths, lend it to the liquidity pool to earn interest, and use it as a collateral to
             borrow synths.
         </h2>
@@ -45,7 +45,7 @@
                     </div>
                     <div class="df-data-item smaller">
                         <h3 class="label">Locked balance</h3>
-                        <div class="value"><f-token-value :token="wftmToken" :value="collateral" /></div>
+                        <div class="value"><f-token-value :token="wnextToken" :value="collateral" /></div>
                     </div>
                 </template>
             </div>
@@ -118,7 +118,7 @@
                 </div>
                 <div class="df-data-item smaller">
                     <h3 class="label">Locked balance</h3>
-                    <div class="value"><f-token-value :token="wftmToken" :value="collateral" /></div>
+                    <div class="value"><f-token-value :token="wnextToken" :value="collateral" /></div>
                 </div>
                 <div v-if="smallView" class="df-data-item smaller">
                     <h3 class="label">Debt Limit <debt-limit-f-info /></h3>
@@ -202,7 +202,7 @@ export default {
                 debt: [],
             },
             /** @type {DefiToken} */
-            wftmToken: {},
+            wnextToken: {},
             /** @type {DefiToken} */
             fusdToken: {},
             /** @type {DefiToken[]} */
@@ -228,9 +228,9 @@ export default {
 
         collateral() {
             /** @type {FMintTokenBalance} */
-            const tokenBalance = this.$defi.getFMintAccountCollateral(this.fMintAccount, this.wftmToken);
+            const tokenBalance = this.$defi.getFMintAccountCollateral(this.fMintAccount, this.wnextToken);
 
-            return this.$defi.fromTokenValue(tokenBalance.balance, this.wftmToken) || 0;
+            return this.$defi.fromTokenValue(tokenBalance.balance, this.wnextToken) || 0;
         },
 
         currentPrice() {
@@ -238,7 +238,7 @@ export default {
         },
 
         availableBalance() {
-            return this.wftmToken ? this.$defi.fromTokenValue(this.wftmToken.availableBalance, this.wftmToken) || 0 : 0;
+            return this.wnextToken ? this.$defi.fromTokenValue(this.wnextToken.availableBalance, this.wnextToken) || 0 : 0;
         },
 
         maxMintable() {
@@ -292,8 +292,8 @@ export default {
             return this.$defi.getDebtLimitColors();
         },
 
-        wftmTokenSymbol() {
-            return this.$defi.getTokenSymbol(this.wftmToken);
+        wnextTokenSymbol() {
+            return this.$defi.getTokenSymbol(this.wnextToken);
         },
 
         backButtonRoute() {
@@ -371,9 +371,9 @@ export default {
 
             this.fMintAccount = result[0];
             this.tokens = result[1];
-            this.wftmToken = this.tokens.find((_item) => _item.symbol === 'WFTM');
+            this.wnextToken = this.tokens.find((_item) => _item.symbol === 'WNEXT');
             this.fusdToken = this.tokens.find((_item) => _item.symbol === 'FUSD');
-            this.tokenPrice = $defi.getTokenPrice(this.wftmToken);
+            this.tokenPrice = $defi.getTokenPrice(this.wnextToken);
             this.currDebt = this.debt.toString();
         },
 

@@ -13,9 +13,9 @@ import { store } from './store';
 import './filters.js';
 import './registerServiceWorker';
 import { FFetch } from '@/plugins/ffetch.js';
-import { FantomWeb3Wallet } from './plugins/fantom-web3-wallet.js';
+import { NextWeb3Wallet } from './plugins/next-web3-wallet.js';
 import { BNBridgeExchange } from './plugins/bnbridge-exchange/bnbridge-exchange.js';
-import { FNano } from './plugins/fantom-nano.js';
+import { FNano } from './plugins/next-nano.js';
 import { DeFi } from './plugins/defi/defi.js';
 import { MM } from '@/plugins/mm/mm.js';
 import { Walletlink } from '@/plugins/walletlink/Walletlink.js';
@@ -27,7 +27,7 @@ import './global-components.js';
 import './wallet.types.js';
 
 Vue.use(FFetch);
-Vue.use(FantomWeb3Wallet, {
+Vue.use(NextWeb3Wallet, {
     apolloClient,
 });
 Vue.use(BNBridgeExchange, {

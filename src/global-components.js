@@ -15,10 +15,10 @@ import ClaimRewardsConfirmation from '@/components/ClaimRewardsConfirmation/Clai
 import StakeConfirmation from '@/components/StakeConfirmation/StakeConfirmation.vue';
 import DelegationLock from '@/components/DelegationLock/DelegationLock.vue';
 import DelegationLockConfirmation from '@/components/DelegationLockConfirmation/DelegationLockConfirmation.vue';
-import DefiMintSFTMConfirmation from '@/components/DefiMintSFTMConfirmation/DefiMintSFTMConfirmation.vue';
-import DefiRepaySFTMConfirmation from '@/components/DefiRepaySFTMConfirmation/DefiRepaySFTMConfirmation.vue';
-import WithdrawFTMConfirmation from '@/components/WithdrawFTMConfirmation/WithdrawFTMConfirmation.vue';
-import UnstakeFTM from '@/components/UnstakeFTM/UnstakeFTM.vue';
+import DefiMintSNEXTConfirmation from '@/components/DefiMintSNEXTConfirmation/DefiMintSNEXTConfirmation.vue';
+import DefiRepaySNEXTConfirmation from '@/components/DefiRepaySNEXTConfirmation/DefiRepaySNEXTConfirmation.vue';
+import WithdrawNEXTConfirmation from '@/components/WithdrawNEXTConfirmation/WithdrawNEXTConfirmation.vue';
+import UnstakeNEXT from '@/components/UnstakeNEXT/UnstakeNEXT.vue';
 import UnstakeConfirmation from '@/components/UnstakeConfirmation/UnstakeConfirmation.vue';
 import DelegationUnlockConfirmation from '@/components/DelegationUnlockConfirmation/DelegationUnlockConfirmation.vue';
 
@@ -37,9 +37,9 @@ Vue.component('ClaimRewardsConfirmation', ClaimRewardsConfirmation);
 Vue.component('StakeConfirmation', StakeConfirmation);
 Vue.component('DelegationLock', DelegationLock);
 Vue.component('DelegationLockConfirmation', DelegationLockConfirmation);
-Vue.component('DefiMintSFTMConfirmation', DefiMintSFTMConfirmation);
-Vue.component('DefiRepaySFTMConfirmation', DefiRepaySFTMConfirmation);
-Vue.component('WithdrawFTMConfirmation', WithdrawFTMConfirmation);
-Vue.component('UnstakeFTM', UnstakeFTM);
+Vue.component('DefiMintSNEXTConfirmation', DefiMintSNEXTConfirmation);
+Vue.component('DefiRepaySNEXTConfirmation', DefiRepaySNEXTConfirmation);
+Vue.component('WithdrawNEXTConfirmation', WithdrawNEXTConfirmation);
+Vue.component('UnstakeNEXT', UnstakeNEXT);
 Vue.component('UnstakeConfirmation', UnstakeConfirmation);
 Vue.component('DelegationUnlockConfirmation', DelegationUnlockConfirmation);

@@ -8,20 +8,20 @@
                         <button
                             id="add_mainnet_btn"
                             class="btn large"
-                            :disabled="addFantomMainnetInProgress"
+                            :disabled="addNextMainnetInProgress"
                             @click="onAddChainClick('mainnet')"
                         >
-                            Add Fantom Opera Mainnet
-                            <pulse-loader v-if="addFantomMainnetInProgress" color="#fff"></pulse-loader>
+                            Add Next Smart Chain Mainnet
+                            <pulse-loader v-if="addNextMainnetInProgress" color="#fff"></pulse-loader>
                         </button>
                         <button
                             id="add_testnet_btn"
                             class="btn large secondary"
-                            :disabled="addFantomTestnetInProgress"
+                            :disabled="addNextTestnetInProgress"
                             @click="onAddChainClick('testnet')"
                         >
-                            Add Fantom Testnet
-                            <pulse-loader v-if="addFantomTestnetInProgress" color="#1969ff"></pulse-loader>
+                            Add Next Testnet
+                            <pulse-loader v-if="addNextTestnetInProgress" color="#1969ff"></pulse-loader>
                         </button>
                     </div>
 
@@ -89,7 +89,7 @@
 
 <script>
 import FCard from '@/components/core/FCard/FCard.vue';
-import { OPERA_MAINNET, OPERA_TESTNET } from '@/plugins/mm/mm.js';
+import { NEXT_MAINNET, NEXT_TESTNET } from '@/plugins/mm/mm.js';
 import FWindow from '@/components/core/FWindow/FWindow.vue';
 import { mapGetters } from 'vuex';
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
@@ -107,8 +107,8 @@ export default {
             isMMInstalled: false,
             popoverText: '',
             btnId: '',
-            addFantomMainnetInProgress: false,
-            addFantomTestnetInProgress: false,
+            addNextMainnetInProgress: false,
+            addNextTestnetInProgress: false,
             addTokenInProgress: false,
             addCustomTokenInProgress: false,
             installMMInProgress: false,
@@ -146,8 +146,8 @@ export default {
         },
 
         stopLoadingIndicators() {
-            this.addFantomMainnetInProgress = false;
-            this.addFantomTestnetInProgress = false;
+            this.addNextMainnetInProgress = false;
+            this.addNextTestnetInProgress = false;
             this.addTokenInProgress = false;
             this.addCustomTokenInProgress = false;
             this.installMMInProgress = false;
@@ -177,13 +177,13 @@ export default {
          */
         async onAddChainClick(_type = 'mainnet') {
             const mainnet = _type === 'mainnet';
-            const chain = mainnet ? OPERA_MAINNET : OPERA_TESTNET;
+            const chain = mainnet ? NEXT_MAINNET : NEXT_TESTNET;
             const btnId = mainnet ? 'add_mainnet_btn' : 'add_testnet_btn';
 
             if (mainnet) {
-                this.addFantomMainnetInProgress = true;
+                this.addNextMainnetInProgress = true;
             } else {
-                this.addFantomTestnetInProgress = true;
+                this.addNextTestnetInProgress = true;
             }
 
             try {

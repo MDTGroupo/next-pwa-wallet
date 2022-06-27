@@ -58,15 +58,15 @@
                             <f-token-value
                                 no-currency
                                 :use-placeholder="false"
-                                :token="wftmToken"
-                                :value="pendingRewardsWFTM(item.rewards) - stashedRewardsWFTM(item.rewards)"
+                                :token="wnextToken"
+                                :value="pendingRewardsWNEXT(item.rewards) - stashedRewardsWNEXT(item.rewards)"
                             />
                             <span class="currency-light">
                                 /
                                 <f-token-value
                                     :use-placeholder="false"
-                                    :token="wftmToken"
-                                    :value="stashedRewardsWFTM(item.rewards)"
+                                    :token="wnextToken"
+                                    :value="stashedRewardsWNEXT(item.rewards)"
                                 />
                             </span>
                         </template>
@@ -78,15 +78,15 @@
                         <f-token-value
                             no-currency
                             :use-placeholder="false"
-                            :token="wftmToken"
-                            :value="pendingRewardsWFTM(item.rewards) - stashedRewardsWFTM(item.rewards)"
+                            :token="wnextToken"
+                            :value="pendingRewardsWNEXT(item.rewards) - stashedRewardsWNEXT(item.rewards)"
                         />
                         <span class="currency-light">
                             /
                             <f-token-value
                                 :use-placeholder="false"
-                                :token="wftmToken"
-                                :value="stashedRewardsWFTM(item.rewards)"
+                                :token="wnextToken"
+                                :value="stashedRewardsWNEXT(item.rewards)"
                             />
                         </span>
                     </template>
@@ -106,7 +106,7 @@
                             <router-link :to="{ name: 'defi-unlock', params: { tokenAddress: item.address } }">
                                 Unlock
                             </router-link>
-                            <template v-if="item.symbol === 'WFTM'">
+                            <template v-if="item.symbol === 'WNEXT'">
                                 ,
                                 <router-link :to="{ name: 'defi-ftrade' }">Swap</router-link>
                             </template>
@@ -126,7 +126,7 @@
                             ,<a
                                 v-if="canClaimRewards"
                                 href="#"
-                                :data-pending-rewards="pendingRewardsWFTM(item.rewards)"
+                                :data-pending-rewards="pendingRewardsWNEXT(item.rewards)"
                                 @click="onClaimRewardsLinkClick"
                             >
                                 Claim
@@ -143,7 +143,7 @@
                         <router-link :to="{ name: 'defi-unlock', params: { tokenAddress: item.address } }">
                             Unlock
                         </router-link>
-                        <template v-if="item.symbol === 'WFTM'">
+                        <template v-if="item.symbol === 'WNEXT'">
                             <br />
                             <router-link :to="{ name: 'defi-ftrade' }">Swap</router-link>
                         </template>
@@ -164,7 +164,7 @@
                         <a
                             v-if="canClaimRewards"
                             href="#"
-                            :data-pending-rewards="pendingRewardsWFTM(item.rewards)"
+                            :data-pending-rewards="pendingRewardsWNEXT(item.rewards)"
                             @click="onClaimRewardsLinkClick"
                         >
                             Claim
@@ -191,7 +191,7 @@ import DepositOrBorrowTokenWindow from '@/components/windows/DepositOrBorrowToke
 import { formatNumberByLocale } from '@/filters.js';
 import { mapGetters } from 'vuex';
 import FTokenValue from '@/components/core/FTokenValue/FTokenValue.vue';
-import { MAX_TOKEN_DECIMALS_IN_TABLES } from '@/plugins/fantom-web3-wallet.js';
+import { MAX_TOKEN_DECIMALS_IN_TABLES } from '@/plugins/next-web3-wallet.js';
 import { eventBusMixin } from '@/mixins/event-bus.js';
 
 export default {
@@ -243,7 +243,7 @@ export default {
             /** Token used in <deposit-or-borrow-token-window> */
             dbToken: {},
             /** @type {DefiToken} */
-            wftmToken: {},
+            wnextToken: {},
             columns: [
                 {
                     name: 'asset',
@@ -331,10 +331,10 @@ export default {
          */
         async tokens(_value) {
             let tokens = _value.filter((_item) => {
-                return _item.isActive && (_item.canDeposit || _item.canMint) && _item.symbol !== 'FTM';
+                return _item.isActive && (_item.canDeposit || _item.canMint) && _item.symbol !== 'NEXT';
             });
 
-            this.wftmToken = _value.find((_item) => _item.symbol === 'WFTM');
+            this.wnextToken = _value.find((_item) => _item.symbol === 'WNEXT');
 
             const items = tokens.filter((_item) => {
                 const collateral = this.getCollateral(_item);
@@ -458,7 +458,7 @@ export default {
          * @return {boolean}
          */
         usedAsCollateral(_token) {
-            return _token.symbol === 'WFTM' || _token.symbol === 'SFTM';
+            return _token.symbol === 'WNEXT' || _token.symbol === 'SNEXT';
         },
 
         /**
@@ -476,15 +476,15 @@ export default {
         /**
          * @param {object} _rewards
          */
-        pendingRewardsWFTM(_rewards) {
-            return this.$defi.fromTokenValue(_rewards.rewardsEarned, this.wftmToken) || 0;
+        pendingRewardsWNEXT(_rewards) {
+            return this.$defi.fromTokenValue(_rewards.rewardsEarned, this.wnextToken) || 0;
         },
 
         /**
          * @param {object} _rewards
          */
-        stashedRewardsWFTM(_rewards) {
-            return this.$defi.fromTokenValue(_rewards.rewardsStashed, this.wftmToken) || 0;
+        stashedRewardsWNEXT(_rewards) {
+            return this.$defi.fromTokenValue(_rewards.rewardsStashed, this.wnextToken) || 0;
         },
 
         /**
@@ -510,7 +510,7 @@ export default {
             if (pendingRewards) {
                 this._eventBus.emit('claim-mint-rewards', {
                     pendingRewards,
-                    token: { ...this.wftmToken },
+                    token: { ...this.wnextToken },
                 });
             }
         },

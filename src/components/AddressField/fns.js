@@ -612,7 +612,7 @@ export const abi = [
                 type: 'string',
             },
         ],
-        name: 'sendFTMToName',
+        name: 'sendNEXTToName',
         outputs: [],
         stateMutability: 'payable',
         type: 'function',

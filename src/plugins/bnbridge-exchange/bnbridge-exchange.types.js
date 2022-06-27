@@ -4,10 +4,10 @@
  * @property {boolean} bnb_to_eth_enabled
  * @property {boolean} eth_to_bnb_enabled
  * @property {boolean} btc_enabled
- * @property {boolean} ftm_enabled
+ * @property {boolean} next_enabled
  * @property {boolean} listed
  * @property {boolean} listing_proposed
- * @property {boolean} opera_enabled
+ * @property {boolean} orion_enabled
  * @property {string} uuid
  * @property {string} name
  * @property {string} process_date
@@ -23,7 +23,7 @@
 
 /**
  * Direction of tokens swap.
- * @typedef {('OperaToBinance' | 'EthereumToBinance' | 'OperaToEthereum' | 'BinanceToOpera' | 'BinanceToEthereum' | 'EthereumToOpera')} BNBridgeDirection
+ * @typedef {('NEXTToBinance' | 'EthereumToBinance' | 'NEXTToEthereum' | 'BinanceToNEXT' | 'BinanceToEthereum' | 'EthereumToNEXT')} BNBridgeDirection
  */
 
 /**

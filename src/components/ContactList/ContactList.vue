@@ -39,10 +39,10 @@
                                     >
                                         <template #popover-text>
                                             Address copied to clipboard.
-                                            <template v-if="contact.blockchain === 'fantom'">
+                                            <template v-if="contact.blockchain === 'next'">
                                                 <br />
-                                                Warning: Use this address to receive Opera FTM only. If you are
-                                                receiving FTM-ERC20 you need to use a different address!
+                                                Warning: Use this address to receive NEXT only. If you are receiving
+                                                receiving NEXT-ERC20 you need to use a different address!
                                             </template>
                                         </template>
                                     </f-copy-button>
@@ -108,7 +108,7 @@ export default {
             type: String,
             default: '',
             validator: function (_value) {
-                return !_value || ['fantom', 'ethereum', 'binance'].indexOf(_value) !== -1;
+                return !_value || ['next', 'ethereum', 'binance'].indexOf(_value) !== -1;
             },
         },
     },
@@ -153,7 +153,7 @@ export default {
             let url = '';
 
             switch (_contact.blockchain) {
-                case 'fantom':
+                case 'next':
                     url = `${appConfig.explorerUrl}address/${address}`;
                     break;
                 case 'ethereum':

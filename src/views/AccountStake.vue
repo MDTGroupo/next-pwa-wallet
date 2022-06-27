@@ -17,15 +17,15 @@ import StakeForm from '../components/forms/StakeForm.vue';
 import StakeConfirmation from '../components/StakeConfirmation/StakeConfirmation.vue';
 import TransactionSuccessMessage from '../components/TransactionSuccessMessage/TransactionSuccessMessage.vue';
 import TransactionRejectMessage from '../components/TransactionRejectMessage/TransactionRejectMessage.vue';
-import UnstakeFTM from '../components/UnstakeFTM/UnstakeFTM.vue';
+import UnstakeNEXT from '../components/UnstakeNEXT/UnstakeNEXT.vue';
 import UnstakeConfirmation from '../components/UnstakeConfirmation/UnstakeConfirmation.vue';
 import ClaimRewardsConfirmation from '../components/ClaimRewardsConfirmation/ClaimRewardsConfirmation.vue';
-import WithdrawFTMConfirmation from '../components/WithdrawFTMConfirmation/WithdrawFTMConfirmation.vue';
+import WithdrawNEXTConfirmation from '../components/WithdrawNEXTConfirmation/WithdrawNEXTConfirmation.vue';
 import DelegationLock from '@/components/DelegationLock/DelegationLock.vue';
 import DelegationLockConfirmation from '@/components/DelegationLockConfirmation/DelegationLockConfirmation.vue';
 import DelegationUnlockConfirmation from '@/components/DelegationUnlockConfirmation/DelegationUnlockConfirmation.vue';
-import DefiMintSFTMConfirmation from '@/components/DefiMintSFTMConfirmation/DefiMintSFTMConfirmation.vue';
-import DefiRepaySFTMConfirmation from '@/components/DefiRepaySFTMConfirmation/DefiRepaySFTMConfirmation.vue';
+import DefiMintSNEXTConfirmation from '@/components/DefiMintSNEXTConfirmation/DefiMintSNEXTConfirmation.vue';
+import DefiRepaySNEXTConfirmation from '@/components/DefiRepaySNEXTConfirmation/DefiRepaySNEXTConfirmation.vue';
 import { eventBusMixin } from '../mixins/event-bus.js';
 
 const DEFAULT_COMPONENT = 'delegations-info';
@@ -34,7 +34,7 @@ export default {
     name: 'AccountStake',
 
     components: {
-        UnstakeFTM,
+        UnstakeNEXT,
         TransactionSuccessMessage,
         TransactionRejectMessage,
         StakeConfirmation,
@@ -43,12 +43,12 @@ export default {
         StakingInfo,
         UnstakeConfirmation,
         ClaimRewardsConfirmation,
-        WithdrawFTMConfirmation,
+        WithdrawNEXTConfirmation,
         DelegationLock,
         DelegationLockConfirmation,
         DelegationUnlockConfirmation,
-        DefiMintSFTMConfirmation,
-        DefiRepaySFTMConfirmation,
+        DefiMintSNEXTConfirmation,
+        DefiRepaySNEXTConfirmation,
     },
 
     mixins: [eventBusMixin],
@@ -70,7 +70,7 @@ export default {
                         previousComponent: this._data_.previousComponent,
                         stakerId: this._data_.stakerId,
                     };
-                case 'unstake-f-t-m':
+                case 'unstake-n-e-x-t':
                 case 'unstake-confirmation':
                 case 'delegation-unlock-confirmation':
                 case 'claim-rewards-confirmation':
@@ -92,13 +92,13 @@ export default {
                         continueToParams: this._data_.continueToParams,
                         stakerId: this._data_.stakerId,
                     };
-                case 'withdraw-f-t-m-confirmation':
+                case 'withdraw-n-e-x-t-confirmation':
                 case 'stake-form':
                 case 'staking-info':
                 case 'delegation-lock':
                 case 'delegation-lock-confirmation':
-                case 'defi-mint-s-f-t-m-confirmation':
-                case 'defi-repay-s-f-t-m-confirmation':
+                case 'defi-mint-s-n-e-x-t-confirmation':
+                case 'defi-repay-s-n-e-x-t-confirmation':
                     return this._data_;
                 default:
                     return null;

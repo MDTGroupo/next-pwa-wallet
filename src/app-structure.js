@@ -57,8 +57,8 @@ const appStructure = [
                                 id: 'staking-info',
                                 _c: [
                                     {
-                                        id: 'staking-unstake-ftm',
-                                        component: 'unstake-f-t-m',
+                                        id: 'staking-unstake-next',
+                                        component: 'unstake-n-e-x-t',
                                         _c: [
                                             {
                                                 id: 'staking-delegation-unlock-confirmation',
@@ -129,37 +129,37 @@ const appStructure = [
                                         ],
                                     },
                                     {
-                                        id: 'staking-mint-sftm-confirmation',
-                                        component: 'defi-mint-s-f-t-m-confirmation',
+                                        id: 'staking-mint-snext-confirmation',
+                                        component: 'defi-mint-s-n-e-x-t-confirmation',
                                         _c: [
                                             {
-                                                id: 'staking-mint-sftm-confirmation-success-message',
+                                                id: 'staking-mint-snext-confirmation-success-message',
                                                 component: 'transaction-success-message',
                                             },
                                             {
-                                                id: 'staking-mint-sftm-confirmation-reject-message',
+                                                id: 'staking-mint-snext-confirmation-reject-message',
                                                 component: 'transaction-reject-message',
                                             },
                                         ],
                                     },
                                     {
-                                        id: 'staking-repay-sftm-confirmation',
-                                        component: 'defi-repay-s-f-t-m-confirmation',
+                                        id: 'staking-repay-snext-confirmation',
+                                        component: 'defi-repay-s-n-e-x-t-confirmation',
                                         _c: [
                                             {
-                                                id: 'staking-repay-sftm-confirmation-success-message',
+                                                id: 'staking-repay-snext-confirmation-success-message',
                                                 component: 'transaction-success-message',
                                                 _c: [
                                                     {
-                                                        id: 'staking-repay-sftm-confirmation2',
-                                                        component: 'defi-repay-s-f-t-m-confirmation',
+                                                        id: 'staking-repay-snext-confirmation2',
+                                                        component: 'defi-repay-s-n-e-x-t-confirmation',
                                                         _c: [
                                                             {
-                                                                id: 'staking-repay-sftm-confirmation-success-message2',
+                                                                id: 'staking-repay-snext-confirmation-success-message2',
                                                                 component: 'transaction-success-message',
                                                             },
                                                             {
-                                                                id: 'staking-repay-sftm-confirmation-reject-message2',
+                                                                id: 'staking-repay-snext-confirmation-reject-message2',
                                                                 component: 'transaction-reject-message',
                                                             },
                                                         ],
@@ -167,21 +167,21 @@ const appStructure = [
                                                 ],
                                             },
                                             {
-                                                id: 'staking-repay-sftm-confirmation-reject-message',
+                                                id: 'staking-repay-snext-confirmation-reject-message',
                                                 component: 'transaction-reject-message',
                                             },
                                         ],
                                     },
                                     {
-                                        id: 'staking-withdraw-ftm-confirmation',
-                                        component: 'withdraw-f-t-m-confirmation',
+                                        id: 'staking-withdraw-next-confirmation',
+                                        component: 'withdraw-n-e-x-t-confirmation',
                                         _c: [
                                             {
-                                                id: 'staking-withdraw-ftm-confirmation-success-message',
+                                                id: 'staking-withdraw-next-confirmation-success-message',
                                                 component: 'transaction-success-message',
                                             },
                                             {
-                                                id: 'staking-withdraw-ftm-confirmation-reject-message',
+                                                id: 'staking-withdraw-next-confirmation-reject-message',
                                                 component: 'transaction-reject-message',
                                             },
                                         ],

@@ -1,5 +1,5 @@
 {
-    "name": "fantom-pwa-wallet",
+    "name": "next-pwa-wallet",
     "version": "0.1.0",
     "scripts": {
         "serve": "vue-cli-service serve",
@@ -35,7 +35,7 @@
         "dexie": "^3.2.0",
         "eslint": "^6.8.0",
         "ethereumjs-util": "^7.0.3",
-        "fantom-ledgerjs": "file:Fantom_LedgerJS",
+        "next-ledgerjs": "file:NEXT_LedgerJS",
         "focus-visible": "^5.1.0",
         "graphql": "^14.6.0",
         "graphql-tag": "^2.10.3",

@@ -303,7 +303,7 @@ export default {
             /** @type {DefiToken} */
             dToken: {},
             /** @type {DefiToken} */
-            wftmToken: {},
+            wnextToken: {},
             /** @type {DefiToken} */
             fusdToken: {},
             /** @type {DefiToken[]} */
@@ -342,15 +342,15 @@ export default {
         },
 
         /**
-         * Temporarily take FTM as collateral.
+         * Temporarily take NEXT as collateral.
          *
          * @return {number}
          */
         collateral() {
             /** @type {FMintTokenBalance} */
-            const tokenBalance = this.$defi.getFMintAccountCollateral(this.fMintAccount, this.wftmToken);
+            const tokenBalance = this.$defi.getFMintAccountCollateral(this.fMintAccount, this.wnextToken);
 
-            return this.$defi.fromTokenValue(tokenBalance.balance, this.wftmToken) || 0;
+            return this.$defi.fromTokenValue(tokenBalance.balance, this.wnextToken) || 0;
         },
 
         availableBalance() {
@@ -358,7 +358,7 @@ export default {
         },
 
         collateralInFUSD() {
-            return (this.collateral * this.$defi.getTokenPrice(this.wftmToken)).toFixed(2);
+            return (this.collateral * this.$defi.getTokenPrice(this.wnextToken)).toFixed(2);
             // return formatNumberByLocale(this.collateral * this.$defi.getTokenPrice(token), 2, 'USD');
         },
 
@@ -549,7 +549,7 @@ export default {
             const tokens = result[1];
 
             this.fMintAccount = result[0];
-            this.wftmToken = tokens.find((_item) => _item.symbol === 'WFTM');
+            this.wnextToken = tokens.find((_item) => _item.symbol === 'WNEXT');
             this.fusdToken = tokens.find((_item) => _item.symbol === 'FUSD');
 
             if (!this.singleToken) {

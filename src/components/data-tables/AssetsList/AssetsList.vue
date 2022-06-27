@@ -125,7 +125,7 @@
                                     Unlock
                                 </router-link>
                             </template>
-                            <template v-if="item.symbol === 'WFTM'">
+                            <template v-if="item.symbol === 'WNEXT'">
                                 ,
                                 <router-link :to="{ name: 'defi-ftrade' }">Swap</router-link>
                             </template>
@@ -155,7 +155,7 @@
                                 Unlock
                             </router-link>
                         </template>
-                        <template v-if="item.symbol === 'WFTM'">
+                        <template v-if="item.symbol === 'WNEXT'">
                             <br />
                             <router-link :to="{ name: 'defi-ftrade' }">Swap</router-link>
                         </template>
@@ -180,7 +180,7 @@
                     <div class="col-6 f-row-label">{{ column.label }}</div>
                     <div class="col break-word">
                         <router-link
-                            v-if="item.symbol !== 'SFTM'"
+                            v-if="item.symbol !== 'SNEXT'"
                             :to="{ name: 'account-send-erc20', params: { token: { ...item } } }"
                             class="action"
                             title="Send"
@@ -191,7 +191,7 @@
                 </div>
                 <template v-else>
                     <router-link
-                        v-if="item.symbol !== 'SFTM'"
+                        v-if="item.symbol !== 'SNEXT'"
                         :to="{ name: 'account-send-erc20', params: { token: { ...item } } }"
                         class="action"
                         title="Send"
@@ -209,7 +209,7 @@ import FDataTable from '@/components/core/FDataTable/FDataTable.vue';
 import FCryptoSymbol from '@/components/core/FCryptoSymbol/FCryptoSymbol.vue';
 import { stringSort } from '@/utils/array-sorting.js';
 // import { formatNumberByLocale } from '@/filters.js';
-import { MAX_TOKEN_DECIMALS_IN_TABLES } from '@/plugins/fantom-web3-wallet.js';
+import { MAX_TOKEN_DECIMALS_IN_TABLES } from '@/plugins/next-web3-wallet.js';
 import FTokenValue from '@/components/core/FTokenValue/FTokenValue.vue';
 
 export default {
@@ -337,8 +337,8 @@ export default {
          */
         tokens(_value) {
             let tokens = _value.filter((_item) => {
-                // return _item.isActive && (_item.canDeposit || _item.canMint) && _item.symbol !== 'FTM';
-                return _item.isActive && _item.symbol !== 'FTM';
+                // return _item.isActive && (_item.canDeposit || _item.canMint) && _item.symbol !== 'NEXT';
+                return _item.isActive && _item.symbol !== 'NEXT';
             });
 
             tokens.forEach((_item) => {
@@ -392,7 +392,7 @@ export default {
          * @return {boolean}
          */
         usedAsCollateral(_token) {
-            return _token.symbol === 'WFTM' || _token.symbol === 'SFTM';
+            return _token.symbol === 'WNEXT' || _token.symbol === 'SNEXT';
         },
     },
 };

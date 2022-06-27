@@ -1,7 +1,7 @@
 <template>
     <div class="stake-form" :class="{ 'increase-delegation': d_increaseDelegation }">
-        <h1 :id="labelId" data-focus class="with-back-btn align-center" aria-label="Delegate FTM">
-            <span>Delegate FTM</span>
+        <h1 :id="labelId" data-focus class="with-back-btn align-center" aria-label="Delegate NEXT">
+            <span>Delegate NEXT</span>
             <f-back-button ref="backButton" :route-name="getBackButtonRoute('staking-stake-form')" />
         </h1>
         <br />
@@ -26,7 +26,7 @@
                                 <div class="input-label-layout">
                                     <label :for="sProps.inputId">{{ sProps.label }}</label>
                                     <button type="button" class="btn light small" @click="onEntireBalanceClick">
-                                        Entire Balance -2 FTM
+                                        Entire Balance
                                     </button>
                                 </div>
                             </template>
@@ -80,7 +80,7 @@
             ref="confirmationWindow"
             body-min-height="350px"
             window-class="send-transaction-form-tx-window"
-            window-title="Delegate FTM"
+            window-title="Delegate NEXT"
             :steps-count="1"
             :active-step="1"
             @cancel-button-click="onCancelButtonClick"
@@ -96,15 +96,15 @@ import FInput from '../core/FInput/FInput.vue';
 import ValidatorPickerWindow from '../windows/ValidatorPickerWindow.vue';
 import { mapGetters } from 'vuex';
 import { focusElem, isAriaAction } from '../../utils/aria.js';
-import sfcUtils from 'fantom-ledgerjs/src/sfc-utils.js';
-import { GAS_LIMITS } from '../../plugins/fantom-web3-wallet.js';
+import sfcUtils from 'next-ledgerjs/src/sfc-utils.js';
+import { GAS_LIMITS } from '../../plugins/next-web3-wallet.js';
 import { getUniqueId } from '@/utils';
 import FBackButton from '@/components/core/FBackButton/FBackButton.vue';
 import { viewHelpersMixin } from '@/mixins/view-helpers.js';
 import TxConfirmationWindow from '@/components/windows/TxConfirmationWindow/TxConfirmationWindow.vue';
 
 // import { formatHexToInt } from '../../filters.js';
-// import { WEIToFTM } from '../../utils/transactions.js';
+// import { WEIToNEXT } from '../../utils/transactions.js';
 
 export default {
     name: 'StakeForm',
@@ -246,18 +246,18 @@ export default {
                 } else if (remainingBalance < 0) {
                     this.amountErrMsg = `You have no balance left`;
                 } else if (value > 0 && value < 1) {
-                    this.amountErrMsg = `You can't stake amount less than 1 FTM`;
+                    this.amountErrMsg = `You can't stake amount less than 1 NEXT`;
                 } else if (value >= 1) {
-                    this.amountErrMsg = `You can stake max ${remainingBalance} FTM`;
+                    this.amountErrMsg = `You can stake max ${remainingBalance} NEXT`;
                 }
             }
 
             if (ok && this.validatorInfo.delegatedLimit && this.validatorInfo.address) {
-                const delegatedLimit = parseFloat(this.$fWallet.WEIToFTM(this.validatorInfo.delegatedLimit));
+                const delegatedLimit = parseFloat(this.$fWallet.WEIToNEXT(this.validatorInfo.delegatedLimit));
 
                 if (value > delegatedLimit) {
                     this.amountErrMsg =
-                        `Staking limit reached. You can stake max ${delegatedLimit} FTM on validator ` + this.validator;
+                        `Staking limit reached. You can stake max ${delegatedLimit} NEXT on validator ` + this.validator;
                     ok = false;
                 }
             }
@@ -293,10 +293,10 @@ export default {
         /**
          * Get transaction object for staking and change view to `StakeConfirmation`.
          *
-         * @param {Number} _amount Amount of FTM to stake.
+         * @param {Number} _amount Amount of NEXT to stake.
          * @return {Promise<void>}
          */
-        async stakeCofirmation(_amount) {
+        async stakeComfirmation(_amount) {
             const amount = parseFloat(_amount);
             const amountWei = this.$fWallet.toWei(_amount);
             const validatorId = parseInt(this.validatorInfo.id, 16);
@@ -371,7 +371,7 @@ export default {
 
             this.updateValidatorInfo().then(async () => {
                 if ((await this.$refs.stakeForm.checkValidity()) && this.validatorInfo.address) {
-                    this.stakeCofirmation(parseFloat(data.amount));
+                    this.stakeComfirmation(parseFloat(data.amount));
                 }
             });
         },

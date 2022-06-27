@@ -1,7 +1,7 @@
 <template>
     <div class="ledger-account-picker">
         <div v-if="showLedgerConnectMessage" class="ledger-connect-message">
-            Please connect your ledger device and select Fantom FTM app.
+            Please connect your ledger device and select NEXT app.
             <div v-if="showTryAgainButton" class="button-footer">
                 <button class="btn large" @click="onTryAgainBtnClick">Try again</button>
             </div>
@@ -15,7 +15,7 @@
                                 {{ account.address }}
                             </a>
                         </h3>
-                        <div class="col">{{ toFTM(account.balance) }} FTM</div>
+                        <div class="col">{{ toNEXT(account.balance) }} NEXT</div>
                     </div>
                 </li>
             </ul>
@@ -41,7 +41,7 @@
 <script>
 import FMessage from '../core/FMessage/FMessage.vue';
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
-import { toFTM } from '../../utils/transactions.js';
+import { toNEXT } from '../../utils/transactions.js';
 import { ADD_LEDGER_ACCOUNT } from '../../store/actions.type.js';
 
 export default {
@@ -148,7 +148,7 @@ export default {
             }
         },
 
-        toFTM,
+        toNEXT,
     },
 };
 </script>

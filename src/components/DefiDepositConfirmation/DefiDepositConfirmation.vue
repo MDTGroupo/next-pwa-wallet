@@ -65,10 +65,10 @@
 <script>
 import TxConfirmation from '../../components/TxConfirmation/TxConfirmation.vue';
 import LedgerConfirmationContent from '../../components/LedgerConfirmationContent/LedgerConfirmationContent.vue';
-import { Web3 } from '../../plugins/fantom-web3-wallet.js';
+import { Web3 } from '../../plugins/next-web3-wallet.js';
 import { mapGetters } from 'vuex';
-import fMintUtils from 'fantom-ledgerjs/src/fmint-utils.js';
-import erc20Utils from 'fantom-ledgerjs/src/erc20-utils.js';
+import fMintUtils from 'next-ledgerjs/src/fmint-utils.js';
+import erc20Utils from 'next-ledgerjs/src/erc20-utils.js';
 import FBackButton from '../../components/core/FBackButton/FBackButton.vue';
 import { getAppParentNode } from '../../app-structure.js';
 import FMessage from '../../components/core/FMessage/FMessage.vue';
@@ -77,7 +77,7 @@ import appConfig from '../../../app.config.js';
 import { getUniqueId } from '@/utils';
 
 /**
- * Common component for DefiDepositFTMConfirmation a DefiManageDepositConfirmation
+ * Common component for DefiDepositNEXTConfirmation a DefiManageDepositConfirmation
  */
 export default {
     name: 'DefiDepositConfirmation',
@@ -318,7 +318,7 @@ export default {
             }
         },
 
-        // toFTM,
+        // toNEXT,
     },
 };
 </script>

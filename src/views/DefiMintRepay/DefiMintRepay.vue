@@ -6,7 +6,7 @@
         </h1>
 
         <h2 class="perex">
-            Mint fUSD with your locked wFTM or repay fUSD to unlock your wFTM. You can use fUSD to trade synths, lend it
+            Mint fUSD with your locked wNEXT or repay fUSD to unlock your wNEXT. You can use fUSD to trade synths, lend
             to the liquidity pool to earn interest, and use it as a collateral to borrow synths.
         </h2>
 

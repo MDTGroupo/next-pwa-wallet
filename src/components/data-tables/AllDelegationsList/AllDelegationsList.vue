@@ -113,7 +113,7 @@ import FDataTable from '@/components/core/FDataTable/FDataTable.vue';
 import gql from 'graphql-tag';
 // import { cloneObject } from '@/utils';
 import { filtersOptions, formatDate, timestampToDate } from '@/filters.js';
-import { WEIToFTM } from '@/utils/transactions.js';
+import { WEIToNEXT } from '@/utils/transactions.js';
 import appConfig from '../../../../app.config.js';
 import { mapGetters } from 'vuex';
 import FEllipsis from '@/components/core/FEllipsis/FEllipsis.vue';
@@ -163,17 +163,17 @@ export default {
                 },
                 {
                     name: 'amount',
-                    label: 'Amount (FTM)',
+                    label: 'Amount (NEXT)',
                     itemProp: 'delegation.amount',
-                    formatter: (_value) => WEIToFTM(_value),
+                    formatter: (_value) => WEIToNEXT(_value),
                     width: '160px',
                     cssClass: 'align-center',
                 },
                 /*{
                     name: 'rewards',
-                    label: 'Pending Rewards (FTM)',
+                    label: 'Pending Rewards (NEXT)',
                     itemProp: 'delegation.pendingRewards',
-                    formatter: (_value) => (_value ? formatNumberByLocale(WEIToFTM(_value.amount)) : '-'),
+                    formatter: (_value) => (_value ? formatNumberByLocale(WEIToNEXT(_value.amount)) : '-'),
                     width: '160px',
                     cssClass: 'align-center',
                 },
@@ -341,7 +341,7 @@ export default {
                         stakers {
                             id
                             stakerAddress
-                            stakerInfo {
+                            validatorInfo {
                                 name
                                 website
                                 contact

@@ -18,7 +18,7 @@ function injectScriptFile(url) {
         container.insertBefore(scriptTag, container.children[0]);
         container.removeChild(scriptTag);
     } catch (e) {
-        console.error('Fantom-PWA-Wallet inpage injection failed.', e);
+        console.error('NEXT-PWA-Wallet inpage injection failed.', e);
     }
 }
 
@@ -83,7 +83,7 @@ function documentElementCheck() {
 
 function sendToInpage() {
     window.postMessage({
-        target: 'FantomPWAwalletInpage',
+        target: 'NextPWAwalletInpage',
         data: data,
     }, location.origin);
 }
@@ -94,12 +94,12 @@ window.addEventListener('message', function(event) {
     if (event.origin !== location.origin) return
     if (event.source !== window) return
     if (typeof msg !== 'object') return
-    if (msg.target !== 'FantomPWAwalletBackground') return
+    if (msg.target !== 'NextPWAwalletBackground') return
     if (!msg.data) return
 
     chrome.runtime.sendMessage(msg.data, function(response) {
         window.postMessage({
-            target: 'FantomPWAwalletInpage',
+            target: 'NextPWAwalletInpage',
             data: response,
             msgId: msg.msgId
         }, location.origin);
@@ -109,7 +109,7 @@ window.addEventListener('message', function(event) {
 // background -> inpage
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     window.postMessage({
-        target: 'FantomPWAwalletInpage',
+        target: 'NextPWAwalletInpage',
         data: request,
     }, location.origin);
 });

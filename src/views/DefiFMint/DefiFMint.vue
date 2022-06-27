@@ -9,22 +9,22 @@
                 <h2>Collateral</h2>
                 <div class="df-data-item smaller">
                     <h3 class="label">
-                        <router-link :to="{ name: 'defi-ftrade' }"> Available {{ wftmTokenSymbol }} </router-link>
-                        <template v-if="sftmToken.address">+ {{ sftmTokenSymbol }}</template>
+                        <router-link :to="{ name: 'defi-ftrade' }"> Available {{ wnextTokenSymbol }} </router-link>
+                        <template v-if="snextToken.address">+ {{ snextTokenSymbol }}</template>
                     </h3>
                     <div class="value">
-                        <f-token-value :token="wftmToken" :value="availableWFTM + availableSFTM" no-currency />
+                        <f-token-value :token="wnextToken" :value="availableWNEXT + availableSNEXT" no-currency />
                     </div>
                 </div>
                 <div class="df-data-item smaller">
                     <h3 class="label">
-                        Locked {{ wftmTokenSymbol }}
-                        <template v-if="sftmToken.address"> + {{ sftmTokenSymbol }}</template>
+                        Locked {{ wnextTokenSymbol }}
+                        <template v-if="snextToken.address"> + {{ snextTokenSymbol }}</template>
                     </h3>
-                    <div class="value"><f-token-value :token="wftmToken" :value="collateral" no-currency /></div>
+                    <div class="value"><f-token-value :token="wnextToken" :value="collateral" no-currency /></div>
                 </div>
                 <div class="df-data-item smaller">
-                    <h3 class="label">Current {{ wftmTokenSymbol }} price</h3>
+                    <h3 class="label">Current {{ wnextTokenSymbol }} price</h3>
                     <div class="value">
                         <f-token-value
                             :value="currentPrice"
@@ -57,21 +57,21 @@
                     <h3 class="label">Est. Pending / Stashed Rewards</h3>
                     <div class="value">
                         <f-placeholder
-                            :content-loaded="!!wftmToken.symbol && 'rewardsEarned' in rewards"
-                            replacement-text="999 / 999 wFTM"
+                            :content-loaded="!!wnextToken.symbol && 'rewardsEarned' in rewards"
+                            replacement-text="999 / 999 wNEXT"
                         >
                             <f-token-value
                                 no-currency
                                 :use-placeholder="false"
-                                :token="wftmToken"
-                                :value="pendingRewardsWFTM - stashedRewardsWFTM"
+                                :token="wnextToken"
+                                :value="pendingRewardsWNEXT - stashedRewardsWNEXT"
                             />
                             <span class="currency-light">
                                 /
                                 <f-token-value
                                     :use-placeholder="false"
-                                    :token="wftmToken"
-                                    :value="stashedRewardsWFTM"
+                                    :token="wnextToken"
+                                    :value="stashedRewardsWNEXT"
                                 />
                             </span>
                         </f-placeholder>
@@ -93,12 +93,12 @@
         <section class="form-buttons" aria-label="fMint actions">
             <div class="row">
                 <div class="col align-start align-center-md">
-                    <router-link :to="{ name: 'defi-lock', params: { token: { ...wftmToken } } }" class="btn large">
+                    <router-link :to="{ name: 'defi-lock', params: { token: { ...wnextToken } } }" class="btn large">
                         Lock Collateral
                     </router-link>
                     <br />
                     <router-link
-                        :to="{ name: 'defi-unlock', params: { token: { ...wftmToken } } }"
+                        :to="{ name: 'defi-unlock', params: { token: { ...wnextToken } } }"
                         class="btn large secondary"
                     >
                         Unlock Collateral
@@ -109,7 +109,7 @@
                         v-if="canClaimRewards"
                         :to="{
                             name: 'defi-fmint-claim-rewards-confirmation',
-                            params: { pendingRewards: pendingRewardsWFTM, token: { ...wftmToken } },
+                            params: { pendingRewards: pendingRewardsWNEXT, token: { ...wnextToken } },
                         }"
                         class="btn large"
                     >
@@ -144,12 +144,12 @@
             </div>
             <!--
             <router-link
-                :to="{ name: $defi.tmpWFTM ? 'defi-lock-unlock' : 'defi-manage-collateral' }"
+                :to="{ name: $defi.tmpWNEXT ? 'defi-lock-unlock' : 'defi-manage-collateral' }"
                 class="btn large"
             >
-                Lock/Unlock {{ wftmTokenSymbol }}
+                Lock/Unlock {{ wnextTokenSymbol }}
             </router-link>
-            <router-link :to="{ name: $defi.tmpWFTM ? 'defi-mint-repay' : 'defi-borrow-fusd' }" class="btn large">
+            <router-link :to="{ name: $defi.tmpWNEXT ? 'defi-mint-repay' : 'defi-borrow-fusd' }" class="btn large">
                 Mint/Repay fUSD
             </router-link>
             -->
@@ -232,7 +232,7 @@
                     <div class="icon">
                         <icon data="@/assets/svg/defi/mint.svg" width="96" height="96" />
                     </div>
-                    <p class="description">Lock FTM to use it as collateral and mint fUSD</p>
+                    <p class="description">Lock NEXT to use it as collateral and mint fUSD</p>
                     <div class="title">Coming Soon</div>
                 </div>
             </li>
@@ -242,7 +242,7 @@
                     <div class="icon">
                         <icon data="@/assets/svg/defi/mint.svg" width="96" height="96" />
                     </div>
-                    <p class="description">Mint fUSD by locking your FTM</p>
+                    <p class="description">Mint fUSD by locking your NEXT</p>
                     <router-link :to="{ name: 'defi-borrow-fusd' }" class="clickable title">
                         Mint fUSD
                     </router-link>
@@ -254,7 +254,7 @@
                     <div class="icon">
                         <icon data="@/assets/svg/defi/repay.svg" width="96" height="96" />
                     </div>
-                    <p class="description">Repay the fUSD you minted and unlock your FTM</p>
+                    <p class="description">Repay the fUSD you minted and unlock your NEXT</p>
                     <div class="title">Coming Soon</div>
                 </div>
             </li>
@@ -312,9 +312,9 @@ export default {
             /** @type {FMintAccount} */
             rewards: {},
             /** @type {DefiToken} */
-            wftmToken: {},
+            wnextToken: {},
             /** @type {DefiToken} */
-            sftmToken: {},
+            snextToken: {},
             /** @type {DefiToken} */
             fusdToken: {},
             /** @type {DefiToken[]} */
@@ -346,21 +346,21 @@ export default {
 
         collateral() {
             /** @type {FMintTokenBalance} */
-            const wFTMtokenBalance = this.$defi.getFMintAccountCollateral(this.fMintAccount, this.wftmToken);
+            const wNEXTtokenBalance = this.$defi.getFMintAccountCollateral(this.fMintAccount, this.wnextToken);
             /** @type {FMintTokenBalance} */
-            const sFTMtokenBalance = this.$defi.getFMintAccountCollateral(this.fMintAccount, this.sftmToken);
-            const wFTMtokenBalanceValue = this.$defi.fromTokenValue(wFTMtokenBalance.balance, this.wftmToken) || 0;
-            const sFTMtokenBalanceValue = this.$defi.fromTokenValue(sFTMtokenBalance.balance, this.sftmToken) || 0;
+            const sNEXTtokenBalance = this.$defi.getFMintAccountCollateral(this.fMintAccount, this.snextToken);
+            const wNEXTtokenBalanceValue = this.$defi.fromTokenValue(wNEXTtokenBalance.balance, this.wnextToken) || 0;
+            const sNEXTtokenBalanceValue = this.$defi.fromTokenValue(sNEXTtokenBalance.balance, this.snextToken) || 0;
 
-            return wFTMtokenBalanceValue + sFTMtokenBalanceValue;
+            return wNEXTtokenBalanceValue + sNEXTtokenBalanceValue;
         },
 
-        availableWFTM() {
-            return this.wftmToken ? this.$defi.fromTokenValue(this.wftmToken.availableBalance, this.wftmToken) || 0 : 0;
+        availableWNEXT() {
+            return this.wnextToken ? this.$defi.fromTokenValue(this.wnextToken.availableBalance, this.wnextToken) || 0 : 0;
         },
 
-        availableSFTM() {
-            return this.sftmToken ? this.$defi.fromTokenValue(this.sftmToken.availableBalance, this.sftmToken) || 0 : 0;
+        availableSNEXT() {
+            return this.snextToken ? this.$defi.fromTokenValue(this.snextToken.availableBalance, this.snextToken) || 0 : 0;
         },
 
         currentPrice() {
@@ -372,18 +372,18 @@ export default {
             return this.$defi.fromTokenValue(this.rewards.rewardsEarned, this.fusdToken) || 0;
         },
 
-        pendingRewardsWFTM() {
-            return this.$defi.fromTokenValue(this.rewards.rewardsEarned, this.wftmToken) || 0;
-            // return this.$defi.convertTokenValue(this.pendingRewards, this.fusdToken, this.wftmToken);
+        pendingRewardsWNEXT() {
+            return this.$defi.fromTokenValue(this.rewards.rewardsEarned, this.wnextToken) || 0;
+            // return this.$defi.convertTokenValue(this.pendingRewards, this.fusdToken, this.wnextToken);
         },
 
         stashedRewards() {
             return this.$defi.fromTokenValue(this.rewards.rewardsStashed, this.fusdToken) || 0;
         },
 
-        stashedRewardsWFTM() {
-            return this.$defi.fromTokenValue(this.rewards.rewardsStashed, this.wftmToken) || 0;
-            // return this.$defi.convertTokenValue(this.stashedRewards, this.fusdToken, this.wftmToken);
+        stashedRewardsWNEXT() {
+            return this.$defi.fromTokenValue(this.rewards.rewardsStashed, this.wnextToken) || 0;
+            // return this.$defi.convertTokenValue(this.stashedRewards, this.fusdToken, this.wnextToken);
         },
 
         canClaimRewards() {
@@ -407,7 +407,7 @@ export default {
         },
 
         availableBalance() {
-            return this.wftmToken ? this.$defi.fromTokenValue(this.wftmToken.availableBalance, this.wftmToken) || 0 : 0;
+            return this.wnextToken ? this.$defi.fromTokenValue(this.wnextToken.availableBalance, this.wnextToken) || 0 : 0;
         },
 
         maxMintable() {
@@ -443,12 +443,12 @@ export default {
             */
         },
 
-        wftmTokenSymbol() {
-            return this.$defi.getTokenSymbol(this.wftmToken);
+        wnextTokenSymbol() {
+            return this.$defi.getTokenSymbol(this.wnextToken);
         },
 
-        sftmTokenSymbol() {
-            return this.$defi.getTokenSymbol(this.sftmToken);
+        snextTokenSymbol() {
+            return this.$defi.getTokenSymbol(this.snextToken);
         },
 
         /**
@@ -489,10 +489,10 @@ export default {
             this.fMintAccount = result[0];
             this.tokens = result[1];
             this.fusdToken = this.tokens.find((_item) => _item.symbol === 'FUSD') || {};
-            this.wftmToken = this.tokens.find((_item) => _item.symbol === 'WFTM') || {};
-            this.sftmToken = this.tokens.find((_item) => _item.symbol === 'SFTM') || {};
+            this.wnextToken = this.tokens.find((_item) => _item.symbol === 'WNEXT') || {};
+            this.snextToken = this.tokens.find((_item) => _item.symbol === 'SNEXT') || {};
 
-            // this.tokenPrice = $defi.getTokenPrice(this.wftmToken);
+            // this.tokenPrice = $defi.getTokenPrice(this.wnextToken);
             this.tokenPrice = await this.$fWallet.getTokenPrice();
 
             this.mintableTokens = this.tokens.filter($defi.canTokenBeMinted);
@@ -545,7 +545,7 @@ export default {
             if (this.canClaimRewards) {
                 this.windowTitle = 'Claim Rewards';
                 this.$refs.confirmationWindow.changeComponent('defi-f-mint-claim-rewards-confirmation', {
-                    params: { pendingRewards: this.pendingRewardsWFTM, token: { ...this.wftmToken } },
+                    params: { pendingRewards: this.pendingRewardsWNEXT, token: { ...this.wnextToken } },
                 });
                 this.$refs.confirmationWindow.show();
             }
@@ -555,7 +555,7 @@ export default {
             if (this.canPushRewards) {
                 this.windowTitle = 'Push Rewards';
                 this.$refs.confirmationWindow.changeComponent('defi-f-mint-push-rewards-confirmation', {
-                    params: { token: { ...this.wftmToken } },
+                    params: { token: { ...this.wnextToken } },
                 });
                 this.$refs.confirmationWindow.show();
             }

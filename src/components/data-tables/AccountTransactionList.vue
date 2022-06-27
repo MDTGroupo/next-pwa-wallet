@@ -118,7 +118,7 @@
 <script>
 import FDataTable from '../core/FDataTable/FDataTable.vue';
 import gql from 'graphql-tag';
-import { WEIToFTM } from '../../utils/transactions.js';
+import { WEIToNEXT } from '../../utils/transactions.js';
 import { timestampToDate, formatHexToInt, formatDate } from '../../filters.js';
 import FAccountTransactionAmount from '../core/FAccountTransactionAmount/FAccountTransactionAmount.vue';
 import { cloneObject, getNestedProp } from '../../utils';
@@ -275,10 +275,10 @@ export default {
                 },
                 {
                     name: 'amount',
-                    label: 'Amount (FTM)',
+                    label: 'Amount (NEXT)',
                     itemProp: 'transaction.value',
                     formatter: (_value) => {
-                        return WEIToFTM(_value);
+                        return WEIToNEXT(_value);
                     },
                     width: '150px',
                     cssClass: 'align-end',
@@ -344,7 +344,7 @@ export default {
             }
         },
 
-        WEIToFTM,
+        WEIToNEXT,
         timestampToDate,
         formatHexToInt,
     },

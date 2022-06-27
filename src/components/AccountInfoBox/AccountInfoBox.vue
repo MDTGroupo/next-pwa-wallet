@@ -7,13 +7,13 @@
                     <h2 class="align-center-lg h3">
                         <span class="not-visible">Available balance</span>
                         <span>
-                            <f-t-m-token-value :value="accountBalance" convert no-currency />
-                            <span class="ftm"> FTM</span>
+                            <n-e-x-t-token-value :value="accountBalance" convert no-currency />
+                            <span class="next"> NEXT</span>
                         </span>
                     </h2>
                     <div class="currency">
-                        <f-t-m-token-value
-                            :value="WEIToFTM(accountBalance) * tokenPrice"
+                        <n-e-x-t-token-value
+                            :value="WEIToNEXT(accountBalance) * tokenPrice"
                             with-price-currency
                             no-currency
                         />
@@ -24,13 +24,13 @@
                     <h2 class="align-center-lg h3">
                         <span class="not-visible">Total balance</span>
                         <span>
-                            <f-t-m-token-value :value="accountTotalBalance" convert no-currency />
-                            <span class="ftm"> FTM</span>
+                            <n-e-x-t-token-value :value="accountTotalBalance" convert no-currency />
+                            <span class="next"> NEXT</span>
                         </span>
                     </h2>
                     <div class="currency">
-                        <f-t-m-token-value
-                            :value="WEIToFTM(accountTotalBalance) * tokenPrice"
+                        <n-e-x-t-token-value
+                            :value="WEIToNEXT(accountTotalBalance) * tokenPrice"
                             with-price-currency
                             no-currency
                         />
@@ -46,13 +46,13 @@
 import FCard from '../core/FCard/FCard.vue';
 import AccountActionsBox from '../AccountActionsBox/AccountActionsBox.vue';
 import { mapGetters } from 'vuex';
-import { WEIToFTM } from '../../utils/transactions.js';
+import { WEIToNEXT } from '../../utils/transactions.js';
 import { pollingMixin } from '../../mixins/polling.js';
 import { UPDATE_ACCOUNT_BALANCE } from '../../store/actions.type.js';
-import FTMTokenValue from '@/components/core/FTMTokenValue/FTMTokenValue.vue';
+import NEXTTokenValue from '@/components/core/NEXTTokenValue/NEXTTokenValue.vue';
 
 export default {
-    components: { FTMTokenValue, FCard, AccountActionsBox },
+    components: { NEXTTokenValue, FCard, AccountActionsBox },
 
     mixins: [pollingMixin],
 
@@ -83,7 +83,7 @@ export default {
     },
 
     methods: {
-        WEIToFTM,
+        WEIToNEXT,
     },
 };
 </script>

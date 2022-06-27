@@ -1,8 +1,8 @@
 <template>
     <div class="welcome-view">
         <div class="intro">
-            <h1>Welcome to Fantom fWallet</h1>
-            <h2>Send, receive and stake your Opera FTM</h2>
+            <h1>Welcome to NEXT Wallet</h1>
+            <h2>Send, receive and stake your NEXT</h2>
         </div>
 
         <div class="view-account-main">
@@ -55,7 +55,7 @@ import { getUniqueId } from '@/utils';
 import CreateAccountWindow from '@/components/windows/CreateAccountWindow/CreateAccountWindow.vue';
 import RestoreAccountWindow from '@/components/windows/RestoreAccountWindow/RestoreAccountWindow.vue';
 
-// import {WEIToFTM} from "../utils/transactions.js";
+// import {WEIToNEXT} from "../utils/transactions.js";
 export default {
     name: 'Welcome',
 

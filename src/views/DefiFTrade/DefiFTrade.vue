@@ -291,7 +291,7 @@ export default {
                 max = this.fromTokenBalance;
             }
 
-            if (fromTokenSymbol === 'FTM') {
+            if (fromTokenSymbol === 'NEXT') {
                 max -= 2;
             }
 
@@ -363,27 +363,27 @@ export default {
 
             this.fMintAccount = result[0];
 
-            const wFTM = result[1].filter((_token) => _token && _token.canWrapFTM);
+            const wNEXT = result[1].filter((_token) => _token && _token.canWrapNEXT);
 
             const account = await this.$fWallet.getBalance(this.currentAccount.address, false, true);
-            const ftmToken = {
-                address: '0xfc00face00000000000000000000000000000000',
-                symbol: 'FTM',
-                name: 'Fantom',
+            const nextToken = {
+                address: '0xa1005fc000000000000000000000000000000000',
+                symbol: 'NEXT',
+                name: 'NEXT',
                 isActive: true,
                 decimals: 18,
-                price: wFTM[0].price,
-                priceDecimals: wFTM[0].priceDecimals,
+                price: wNEXT[0].price,
+                priceDecimals: wNEXT[0].priceDecimals,
                 availableBalance: account.balance,
                 allowance: '0x0',
-                logoUrl: 'https://cryptologos.cc/logos/fantom-ftm-logo.svg?v=003',
+                logoUrl: 'https://cryptologos.cc/logos/next-next-logo.svg?v=003',
             };
-            this.$defi._setTokenDecimals(ftmToken);
+            this.$defi._setTokenDecimals(nextToken);
 
-            // add FTM
-            result[1].unshift(ftmToken);
+            // add NEXT
+            result[1].unshift(nextToken);
 
-            this.tokens = result[1].filter((_token) => _token && (_token.symbol === 'FTM' || _token.canWrapFTM));
+            this.tokens = result[1].filter((_token) => _token && (_token.symbol === 'NEXT' || _token.canWrapNEXT));
 
             // this.tokens = result[1].filter($defi.canTokenBeTraded);
 
@@ -628,7 +628,7 @@ export default {
         onSubmit() {
             const { fromToken } = this;
             const { toToken } = this;
-            // const ftmTokens = ['FTM', 'WFTM'];
+            // const ftmTokens = ['NEXT', 'WNEXT'];
             const params = {
                 fromValue: this.fromValue,
                 toValue: this.toValue,
@@ -637,7 +637,7 @@ export default {
                 max: this.maxFromInputValue === this.fromValue,
             };
 
-            if (fromToken.canWrapFTM && toToken.symbol === 'FTM') {
+            if (fromToken.canWrapNEXT && toToken.symbol === 'NEXT') {
                 this.stepsCount = 2;
                 params.steps = this.stepsCount;
                 params.step = this.$refs.confirmationWindow.activeStep;

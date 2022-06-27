@@ -26,7 +26,7 @@
 
                 <div class="row no-collapse">
                     <div class="col-3 f-row-label">Amount</div>
-                    <div class="col">{{ amount }} FTM</div>
+                    <div class="col">{{ amount }} NEXT</div>
                 </div>
 
                 <div class="row no-collapse">
@@ -43,7 +43,7 @@
 import TxConfirmation from '@/components/TxConfirmation/TxConfirmation';
 import { mapGetters } from 'vuex';
 import { SET_ACTIVE_ACCOUNT_BY_ADDRESS } from '@/store/mutations.type';
-import { Web3 } from '@/plugins/fantom-web3-wallet';
+import { Web3 } from '@/plugins/next-web3-wallet';
 
 export default {
     name: 'EipSendTransaction',
