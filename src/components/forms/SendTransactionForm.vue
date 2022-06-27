@@ -88,9 +88,7 @@
                                 <br />
                             </template>
 
-                            <button type="submit" class="btn large break-word" style="max-width: 100%;">
-                                Continue
-                            </button>
+                            <button type="submit" class="btn large break-word" style="max-width: 100%">Continue</button>
                         </div>
                     </div>
                 </fieldset>
@@ -349,7 +347,7 @@ export default {
         },
 
         async resolveAddress(value, currency, chain) {
-            console.log('resolving ', value);
+            console.log('resolving', value);
             this.resolvedAddress = null;
             if (resolution.isSupportedDomainInNetwork(value)) {
                 try {
@@ -365,11 +363,16 @@ export default {
                 }
             }
 
+            console.log('check the owning', value);
             const isOwned = await contract.methods.isOwnedByMapping(value.toUpperCase()).call();
+            console.log('check the owning done');
+
             if (isOwned) {
                 this.resolvedAddress = await contract.methods.getOwnerOfName(value.toUpperCase()).call();
                 console.log('domain ', value, ' resolved using rave names to ', this.resolvedAddress);
             }
+            console.log('resolving done');
+
             return this.resolvedAddress;
         },
 
@@ -417,6 +420,7 @@ export default {
 
         */
         async onFormSubmit(_event) {
+            console.log('Going to submit a transaction');
             const { data } = _event.detail;
             const { d_sendDirection } = this;
 
