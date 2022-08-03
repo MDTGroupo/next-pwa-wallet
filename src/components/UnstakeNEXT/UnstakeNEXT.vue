@@ -4,7 +4,7 @@
 
         <f-card class="__f-card-double-padding f-data-layout" off>
             <f-form ref="form" center-form :aria-labelledby="labelId" @f-form-submit="onFormSubmit">
-                <!--                <legend class="h2" data-focus>
+                              <legend class="h2" data-focus>
                     <div class="cont-with-back-btn">
                         <span>
                             Undelegate NEXT <span class="f-steps"><b>1</b> / {{ lockExist ? '3' : '2' }}</span>
@@ -18,7 +18,7 @@
                             Back
                         </button>
                     </div>
-                </legend>-->
+                </legend>
 
                 <div class="form-body">
                     <h3>The withdrawal of your delegated tokens will take 7 days</h3>
@@ -28,11 +28,11 @@
                             You will lose {{ cUnlockPenalty }} NEXT by undelegating before the lock expiration.
                         </template>
                     </h3>
-                    <!--                    <h3 v-if="lockExist" class="orange-color" style="padding-top: 0;">
+                                   <h3 v-if="lockExist" class="orange-color" style="padding-top: 0;">
                         Your delegation is still locked. You will lose
                         {{ cUnlockPenalty > 0 ? `${cUnlockPenalty} NEXT` : 'part of your rewards' }}
                         by undelegating before the lock expiration.
-                    </h3>-->
+                    </h3>
 
                     <f-input
                         v-model="amount"
